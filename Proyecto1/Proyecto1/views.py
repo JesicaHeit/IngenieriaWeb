@@ -16,7 +16,7 @@ def home(request): #Inicio
 def recipes(request): #Página recetas - Necesita login
     nombre = "Ana"
     ahora = datetime.datetime.now()
-    doc_externo = open("C:/IngenieriaWeb/Proyecto1/Proyecto1/plantillas/plantilla.html")
+    doc_externo = open("C:/IngenieriaWeb/Proyecto1/Proyecto1/plantillas/plantilla_recipes.html")
     plt = Template(doc_externo.read())
     doc_externo.close()
     ctx = Context({"nombre_persona": nombre, "hora_actual": ahora})
