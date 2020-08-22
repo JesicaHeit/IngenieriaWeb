@@ -18,10 +18,12 @@ from django.urls import path
 # from Proyecto1.views import saludo
 from Proyecto1.views import home
 from Proyecto1.views import recipes
+from Proyecto1.views import registro_usuario
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 #    path ('saludo/',saludo),
     path('home/', home),
-    path('recipes/', recipes)
+    path('recipes/', recipes),
+    path('registro/', registro_usuario)
 ]
