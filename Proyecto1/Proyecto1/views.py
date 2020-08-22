@@ -7,6 +7,17 @@ import datetime
 from django.shortcuts import render
 from Proyecto1.forms import CustomUserForm
 
+def inicio_sesion(request):
+    data = {
+        'form': CustomUserForm()
+    }
+    doc_externo = open("C:/IngenieriaWeb/Proyecto1/Proyecto1/templates/registration/login.html")
+    plt = Template(doc_externo.read())
+    doc_externo.close()
+    ctx = Context()
+    documento = plt.render(ctx)
+    return HttpResponse(documento)
+
 def registro_usuario(request):
     data = {
         'form': CustomUserForm()
@@ -28,7 +39,7 @@ def home(request): #Inicio
     doc_externo.close()
     ctx = Context({"nombre_persona": nombre, "hora_actual": ahora})
     documento = plt.render(ctx)
-
+    return HttpResponse(documento)
 
 
 def recipes(request): #Página recetas - Necesita login
