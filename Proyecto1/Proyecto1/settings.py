@@ -28,7 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+LOGIN_REDIRECT_URL='/recipes'
+LOGOUT_REDIRECT_URL='/'
+LOGIN_URL='/accounts/login/'
 # Application definition
 
 INSTALLED_APPS = [
@@ -115,7 +117,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-#LOGIN_REDIRECT_URL= reverse_lazy('users/plantilla_recipes.html')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
