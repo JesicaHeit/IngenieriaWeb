@@ -8,7 +8,7 @@ import datetime
 from django.shortcuts import render
 from Proyecto1.forms import CustomUserForm
 
-@login_required()
+#@login_required()
 def home(request): #Inicio
     nombre = "Juancito Perez"
     ahora = datetime.datetime.now()
@@ -19,7 +19,9 @@ def home(request): #Inicio
     documento = plt.render(ctx)
     return HttpResponse(documento)
 
-@login_required(login_url='/accounts/login/')
+#@login_required(login_url='/accounts/login/')
+#@login_required(redirect_field_name='/recipes')
+@login_required()
 def recipes(request): #Página recetas - Necesita login
     nombre = "Ana"
     ahora = datetime.datetime.now()
@@ -30,8 +32,6 @@ def recipes(request): #Página recetas - Necesita login
     documento = plt.render(ctx)
 
     return HttpResponse(documento)
-
-
 
 
 def pantalla_intermedia(request): #Vista
