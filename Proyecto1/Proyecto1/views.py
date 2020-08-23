@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.template import Template, Context
-
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView
@@ -8,7 +8,7 @@ import datetime
 from django.shortcuts import render
 from Proyecto1.forms import CustomUserForm
 
-
+@login_required()
 def home(request): #Inicio
     nombre = "Juancito Perez"
     ahora = datetime.datetime.now()
@@ -19,7 +19,7 @@ def home(request): #Inicio
     documento = plt.render(ctx)
     return HttpResponse(documento)
 
-
+@login_required(login_url='/accounts/login/')
 def recipes(request): #Página recetas - Necesita login
     nombre = "Ana"
     ahora = datetime.datetime.now()
