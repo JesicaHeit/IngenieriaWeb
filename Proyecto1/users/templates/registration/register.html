@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuario</title>
+</head>
+<body>
+    <h2>Registro usuario</h2>
+    <form action ="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+
+        <input type="reset" value="Limpiar">
+        <input type="submit" value="Registrar">
+    </form>
+</body>
+</html>
+<hr />
+
+<a href="/accounts/login">Iniciar sesión</a>
