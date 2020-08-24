@@ -22,6 +22,7 @@ from Proyecto1.views import recipes
 from Proyecto1.views import pantalla_intermedia
 
 
+
 urlpatterns = [
 
     # Sección para usuarios
