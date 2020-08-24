@@ -13,41 +13,36 @@ from Proyecto1.forms import CustomUserForm
 
 
 def home(request): #Inicio
-    nombre = "Juancito Perez"
-    ahora = datetime.datetime.now()
-    doc_externo = open("C:/IngenieriaWeb/Proyecto1/Proyecto1/plantillas/plantilla_home.html")
-    plt = Template(doc_externo.read())
-    doc_externo.close()
-    ctx = Context({"nombre_persona": nombre, "hora_actual": ahora})
-    documento = plt.render(ctx)
-    return HttpResponse(documento)
+   # nombre = "Juancito Perez"
+   # ahora = datetime.datetime.now()
+   # doc_externo = open("C:/IngenieriaWeb/Proyecto1/Proyecto1/plantillas/plantilla_home.html")
+   # plt = Template(doc_externo.read())
+   # doc_externo.close()
+   # ctx = Context({"nombre_persona": nombre, "hora_actual": ahora})
+   # documento = plt.render(ctx)
+    return render(request,'users/plantilla_home.html',{})
 
 #@login_required(login_url='/accounts/login/')
 #@login_required(redirect_field_name='/recipes')
 @login_required()
+
 def recipes(request): #Página recetas - Necesita login
-    nombre = "Ana"
+  #	nombre = "Ana"
+  #  ahora = datetime.datetime.now()
 
-    ahora = datetime.datetime.now()
-    doc_externo = open("C:/IngenieriaWeb/Proyecto1/Proyecto1/plantillas/plantilla_recipes.html")
-    plt = Template(doc_externo.read())
-    doc_externo.close()
-    ctx = Context({"nombre_persona": nombre, "hora_actual": ahora})
-    documento = plt.render(ctx)
-
-    return HttpResponse(documento)
+    return render(request,'users/plantilla_recipes.html',{})
 
 
 def pantalla_intermedia(request): #Vista
     nombre="Tu registro fue exitoso"
     #ahora=datetime.datetime.now()
-    doc_externo= open("C:/IngenieriaWeb/Proyecto1/users/templates/users/pantalla_intermedia.html")
-    plt=Template(doc_externo.read())
-    doc_externo.close()
-    ctx= Context({"nombre_persona": nombre})
-    documento=plt.render(ctx)
+   # doc_externo= open("users/templates/users")
+   # plt=Template(doc_externo.read())
+   # doc_externo.close()
+   # ctx= Context({"nombre_persona": nombre})
+   # documento=plt.render(ctx)
 
-    return HttpResponse(documento)
+    return render(request,'users/pantalla_intermedia.html',{'nombre_persona': nombre})
 
 
 
