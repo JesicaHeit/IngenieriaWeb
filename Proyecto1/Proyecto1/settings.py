@@ -28,9 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL='/recipes'
-LOGOUT_REDIRECT_URL='/'
-LOGIN_URL='/accounts/login/'
+LOGIN_REDIRECT_URL='/home'
+LOGOUT_REDIRECT_URL='/home'
+#LOGIN_URL='/accounts/login/'
 # Application definition
 
 INSTALLED_APPS = [
