@@ -1,6 +1,9 @@
 from django.http import HttpResponse
 from django.template import Template, Context
 from django.contrib.auth.decorators import login_required
+from .forms import CustomUserForm
+from django.contrib.auth import login, authenticate
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView
@@ -8,7 +11,7 @@ import datetime
 from django.shortcuts import render
 from Proyecto1.forms import CustomUserForm
 
-#@login_required()
+
 def home(request): #Inicio
     nombre = "Juancito Perez"
     ahora = datetime.datetime.now()
@@ -24,6 +27,7 @@ def home(request): #Inicio
 @login_required()
 def recipes(request): #Página recetas - Necesita login
     nombre = "Ana"
+
     ahora = datetime.datetime.now()
     doc_externo = open("C:/IngenieriaWeb/Proyecto1/Proyecto1/plantillas/plantilla_recipes.html")
     plt = Template(doc_externo.read())
@@ -44,5 +48,6 @@ def pantalla_intermedia(request): #Vista
     documento=plt.render(ctx)
 
     return HttpResponse(documento)
+
 
 
