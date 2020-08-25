@@ -29,8 +29,10 @@ def home(request): #Inicio
 def recipes(request): #Página recetas - Necesita login
   #	nombre = "Ana"
   #  ahora = datetime.datetime.now()
+    return render(request, 'users/plantilla_recipes.html', {})
 
-    return render(request,'users/plantilla_recipes.html',{})
+
+
 
 
 def pantalla_intermedia(request): #Vista
