@@ -21,11 +21,10 @@ from Proyecto1.views import home
 from Proyecto1.views import recipes
 from Proyecto1.views import pantalla_intermedia
 
-
-
 urlpatterns = [
 
     # Sección para usuarios
+    path('', home),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('register/', views.register),
