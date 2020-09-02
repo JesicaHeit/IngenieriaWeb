@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as do_login
 from django.contrib.auth import logout as do_logout
-
+from django.utils.encoding import force_bytes, force_text
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
@@ -28,13 +28,13 @@ def welcome(request):
 
 
 def register(request):
-    if request.method == 'GET':
-        return render(request, 'users/register.html')
+   # if request.method == 'GET':
+   #     return render(request, 'users/register.html')
     # Creamos el formulario de autenticación vacío
-    form = UserCreationForm()
-    if request.method == "POST":
+    form = CustomUserForm()
+    if  request.method == "POST":
         # Añadimos los datos recibidos al formulario
-        form = UserCreationForm(data=request.POST)
+        form = CustomUserForm(request.POST)
         # Si el formulario es válido...
         if form.is_valid():
 
@@ -61,14 +61,14 @@ def register(request):
             )
             email.send(fail_silently=False)
 
-            return HttpResponse('Por favor confirme su dirección de correo para completar el registro')
+            return redirect('/login'+'?message='+'Revisa tu correo para activar la cuenta')
         else:
-            form = UserCreationForm(request.POST)
-            # Si llegamos al final renderizamos el formulario
-            return render(request, "users/register.html", {'form': form})
+            form = CustomUserForm(request.POST)
+        # Si llegamos al final renderizamos el formulario
+    return render(request, "users/register.html", {'form': form})
              
-        # Si existe el usuario
-        if user is not None:
+    # Si existe el usuario
+    if user is not None:
                 # Hacemos el login manualmente
                 do_login(request, user)
                 # Y le redireccionamos a la portada
