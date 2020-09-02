@@ -27,8 +27,7 @@ def home(request): #Inicio
 @login_required()
 
 def recipes(request): #Página recetas - Necesita login
-  #	nombre = "Ana"
-  #  ahora = datetime.datetime.now()
+    nombre = request.user
     return render(request, 'users/plantilla_recipes.html', {})
 
 def pantalla_intermedia(request): #Vista
