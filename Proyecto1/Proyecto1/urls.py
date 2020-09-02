@@ -17,9 +17,15 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.urls import  path,include
 from users import views
+from users.views import register
+from users.views import activate
+from users.views import login
+from users.views import logout
 from Proyecto1.views import home
 from Proyecto1.views import recipes
 from Proyecto1.views import pantalla_intermedia
+from recetas import views
+from recetas.views import post_new
 
 urlpatterns = [
 
@@ -27,13 +33,14 @@ urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('register/', views.register),
-    path('activate/<uidb64>/<token>/',views.activate, name='activate'), 
-    path('login/', views.login),
-    path('logout/', views.logout),
+    path('register/', register),
+    path('activate/<uidb64>/<token>/',activate, name='activate'),
+    path('login/', login),
+    path('logout/', logout),
     path('home/', home),
     path('recipes/', login_required(recipes)),
     path ('pantalla_intermedia/', pantalla_intermedia),
+    path ('nueva_receta/', post_new, name='post_new')
 
 ]
 

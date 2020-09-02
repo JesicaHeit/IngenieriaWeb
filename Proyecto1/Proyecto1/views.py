@@ -31,10 +31,6 @@ def recipes(request): #Página recetas - Necesita login
   #  ahora = datetime.datetime.now()
     return render(request, 'users/plantilla_recipes.html', {})
 
-
-
-
-
 def pantalla_intermedia(request): #Vista
     nombre="Tu registro fue exitoso"
     #ahora=datetime.datetime.now()

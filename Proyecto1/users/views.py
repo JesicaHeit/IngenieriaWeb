@@ -61,7 +61,7 @@ def register(request):
             )
             email.send(fail_silently=False)
 
-            return redirect('/login'+'?message='+'Revisa tu correo para activar la cuenta')
+            return redirect('/pantalla_intermedia')#('/login'+'?message='+'Revisa tu correo para activar la cuenta')
         else:
             form = CustomUserForm(request.POST)
         # Si llegamos al final renderizamos el formulario
