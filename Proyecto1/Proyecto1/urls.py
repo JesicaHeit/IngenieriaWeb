@@ -28,6 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('register/', views.register),
+    path('activate/<uidb64>/<token>/',views.activate, name='activate'), 
     path('login/', views.login),
     path('logout/', views.logout),
     path('home/', home),
