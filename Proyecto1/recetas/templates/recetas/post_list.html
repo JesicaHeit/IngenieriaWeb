@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Tus publicaciones</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/">El encuentro</a></h1>
+        </div>
+
+        {% for rec in receta %}
+            <div>
+                <h2><a href="{% url 'post_detail' pk=rec.pk %}">{{ rec.title }}</a></h2>
+                <p>{{ rec.published_date }}</p>
+                <p>{{ rec.text|linebreaksbr }}</p>
+                <p>{{ rec.author }} </p>
+            </div>
+        {% endfor %}
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="receta">
+        {% if receta.published_date %}
+            <div class="date">
+                {{ receta.published_date }}
+            </div>
+        {% endif %}
+        <h2>{{ receta.title }}</h2>
+        <p>{{ receta.text|linebreaksbr }}</p>
+    </div>
+</body>
+</html>
