@@ -47,6 +47,6 @@ urlpatterns = [
     path ('nueva_receta/', post_new, name='post_new'),
     path('receta_user/', post_list2),
     path('receta_all/', post_list),
-    path('post/<int:pk>/', post_detail, name='post_detail')
+    path('post/<int:pk>/', post_detail, name='post_detail'),
 
 ]
