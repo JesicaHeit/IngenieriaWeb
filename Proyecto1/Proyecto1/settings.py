@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'recetas',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -134,5 +135,8 @@ EMAIL_HOST_USER = 'elencuentro0020@gmail.com'
 EMAIL_PORT = 465  
 EMAIL_USE_SSL = True  
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+RECAPTCHA_PRIVATE_KEY='6LdwP8gZAAAAAD43s0X5GFXIEv38dmQ3wvi0CnM3'
+RECAPTCHA_PUBLIC_KEY='6LdwP8gZAAAAAKDPfb8Uw7vZugEcFw_vXr3-bDBo'
 
 #django_heroku.settings(locals())
