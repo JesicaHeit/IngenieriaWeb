@@ -30,7 +30,7 @@ from recetas.views import post_new
 from recetas.views import post_list
 from recetas.views import post_detail
 from recetas.views import post_list2
-
+from users.views import UserEditView
 urlpatterns = [
 
     # Sección para usuarios
@@ -48,5 +48,5 @@ urlpatterns = [
     path('receta_user/', post_list2),
     path('receta_all/', post_list),
     path('post/<int:pk>/', post_detail, name='post_detail'),
-
+    path('edit_profile/', UserEditView.as_view(), name='edit_profile'),
 ]
