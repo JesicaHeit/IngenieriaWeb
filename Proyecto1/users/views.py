@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
 from django.contrib.auth import login as do_login
 from django.contrib.auth import logout as do_logout
 from django.utils.encoding import force_bytes, force_text
@@ -14,8 +14,8 @@ from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.urls import reverse
-
+from django.urls import reverse, reverse_lazy
+from django.views import generic
 from .tokens import account_activation_token
 from .forms import CustomUserForm
 
@@ -134,3 +134,10 @@ def logout(request):
     do_logout(request)
     # Redireccionamos a la portada
     return redirect('/')
+
+class UserEditView (generic.UpdateView):
+    form_class=UserChangeForm
+    template_name='registration/edit_profile.html'
+    success_url=reverse_lazy('home')
+    def get_object(self):
+        return self.request.user
