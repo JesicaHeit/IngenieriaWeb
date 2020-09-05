@@ -4,6 +4,7 @@ from .forms import RecetasForm
 from Proyecto1 import views
 from Proyecto1.views import home
 from .models import Receta
+from django.contrib.auth.models import User
 
 # Create your views here.
 def post_new(request):
@@ -20,8 +21,15 @@ def post_new(request):
     return render(request, 'recetas/post_edit.html', {'form': form})
 
 def post_list(request):
-    receta = Receta.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'recetas/post_list.html', {'receta': receta})
+    ''
+    if request.user.is_authenticated:
+        receta = Receta.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+        return render(request, 'recetas/post_list.html', {'receta': receta})
+
+def post_list2(request):
+    if request.user.is_authenticated:
+        receta = Receta.objects.filter(author=request.user,published_date__lte=timezone.now()).order_by('published_date')
+        return render(request, 'recetas/post_list2.html', {'receta': receta})
 
 def post_detail (request, pk):
     receta = get_object_or_404(Receta, pk=pk)

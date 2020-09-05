@@ -29,6 +29,7 @@ from recetas import views
 from recetas.views import post_new
 from recetas.views import post_list
 from recetas.views import post_detail
+from recetas.views import post_list2
 
 urlpatterns = [
 
@@ -44,7 +45,8 @@ urlpatterns = [
     path('recipes/', login_required(recipes)),
     path ('pantalla_intermedia/', pantalla_intermedia),
     path ('nueva_receta/', post_new, name='post_new'),
-    path('receta_user/', post_list),
+    path('receta_user/', post_list2),
+    path('receta_all/', post_list),
     path('post/<int:pk>/', post_detail, name='post_detail')
 
 ]
