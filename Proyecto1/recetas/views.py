@@ -5,8 +5,10 @@ from Proyecto1 import views
 from Proyecto1.views import home
 from .models import Receta
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required()
 def post_new(request):
     if request.method == "POST":
         form = RecetasForm(request.POST)
@@ -22,9 +24,9 @@ def post_new(request):
 
 def post_list(request):
     ''
-    if request.user.is_authenticated:
-        receta = Receta.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-        return render(request, 'recetas/post_list.html', {'receta': receta})
+    #if request.user.is_authenticated:
+    receta = Receta.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    return render(request, 'recetas/post_list.html', {'receta': receta})
 
 def post_list2(request):
     if request.user.is_authenticated:
