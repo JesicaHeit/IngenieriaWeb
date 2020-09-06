@@ -1,5 +1,6 @@
+{% extends 'base_template.html' %}
 <h2>Iniciar sesión</h2>
-
+{%block content%}
 <form method="POST">
     {{ form.as_p }}
     {% csrf_token %}
@@ -7,4 +8,5 @@
 </form>
 
 <hr />
+{%endblock%}
 <a href="/register">Registrar usuario</a>
