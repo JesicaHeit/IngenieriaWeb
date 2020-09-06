@@ -27,16 +27,16 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-
           </li>
           {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="/recipes">Recetas</a>
-              <a class="nav-link" href="">Categorias</a>
-            </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{%url 'receta_user'%}">Mis Recetas <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{%url 'edit_profile'%}">Editar Perfil <span class="sr-only">(current)</span></a>
+          </li>
             <li class="nav-item">
 
             </li>
@@ -57,9 +57,18 @@
           </ul>
         {% else %}
           <form class="form-inline my-2 my-lg-0">
-            <a href="/recipes" class="btn btn-primary ml-2">Recetas</a>
-            <a href="{% url 'login' %}" class="btn btn-outline-secondary ml-2">Iniciar Sesión</a>
-            <a href="/register" class="btn btn-primary ml-2">Registrarse</a>
+            <li class="nav-item active">
+              <a class="nav-link" href="{%url 'recetas'%}">Recetas <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'post_new'%}">Publicar Receta</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'login'%}">Iniciar Sesión</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'register'%}">Registrarse</a>
+            </li>
           </form>
         {% endif %}
       </div>
