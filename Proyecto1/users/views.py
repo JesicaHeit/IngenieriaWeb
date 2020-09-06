@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
 from django.contrib.auth import login as do_login
@@ -18,6 +18,9 @@ from django.urls import reverse, reverse_lazy
 from django.views import generic
 from .tokens import account_activation_token
 from .forms import CustomUserForm
+from django.views.generic import DetailView
+from .models import Profile
+
 
 def welcome(request):
     # Si estamos identificados devolvemos la portada
@@ -134,6 +137,19 @@ def logout(request):
     do_logout(request)
     # Redireccionamos a la portada
     return redirect('/')
+
+class ShowProfilePageView (DetailView):
+    model= Profile
+    template_name='registration/user_profile.html'
+
+    def get_context_data(self,*args, **kwargs):
+        users=Profile.object.all()
+        context=super(ShowProfilePageView, self).get_context_data(*args,**kwargs)
+        page_user=get_object_or_404(Profile, id=self.kwargs['pk'])
+
+        context["users"]=users
+        return context
+
 
 class UserEditView (generic.UpdateView):
     form_class=UserChangeForm
