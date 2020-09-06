@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_template.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +7,7 @@
 </head>
 #style="color: tomato"
 <body>
+{%block content%}
     <h1 >
         ¡Bienvenidos! Esta es nuestra página de inicio.
     </h1>
@@ -26,7 +27,7 @@
         {%endif%}
     </form>
 
-
+{%endblock%}
 
 </body>
 </html>
