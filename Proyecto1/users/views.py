@@ -126,7 +126,7 @@ def login(request):
                 # Hacemos el login manualmente
                 do_login(request, user)
                 # Y le redireccionamos a la portada
-                return redirect('/recipes')
+                return redirect('/receta_user')
 
     # Si llegamos al final renderizamos el formulario
     return render(request, "users/login.html", {'form': form})
