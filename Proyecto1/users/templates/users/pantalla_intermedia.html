@@ -1,3 +1,4 @@
+{% extends 'base_template.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <title>Home</title>
 </head>
 <body>
+{%block content%}
     <h1 style="color: tomato">
     Solo falta un último paso: activar tu cuenta!
     </h1>
@@ -18,6 +20,6 @@
             <li><a href="/register"><font face="verdana">Registrarse</font></a></li>
             <li> <a href="/recipes"><font face="verdana">Ver recetas</font></a></li>-->
     {%endif%}
-
+{%endblock%}
 </body>
 </html>
