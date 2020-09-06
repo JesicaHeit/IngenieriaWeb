@@ -1,3 +1,4 @@
+{% extends 'base_template.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <title>Title</title>
 </head>
 <body>
+{%block content%}
     <div class="receta">
         {% if receta.published_date %}
             <div class="date">
@@ -15,5 +17,6 @@
         <h2>{{ receta.ingredients }}</h2>
         <p>{{ receta.text|linebreaksbr }}</p>
     </div>
+{%endblock%}
 </body>
 </html>
