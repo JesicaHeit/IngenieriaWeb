@@ -126,7 +126,7 @@ def login(request):
                 # Hacemos el login manualmente
                 do_login(request, user)
                 # Y le redireccionamos a la portada
-                return redirect('/receta_user')
+                return redirect('/home')
 
     # Si llegamos al final renderizamos el formulario
     return render(request, "users/login.html", {'form': form})
@@ -143,11 +143,11 @@ class ShowProfilePageView (DetailView):
     template_name='registration/user_profile.html'
 
     def get_context_data(self,*args, **kwargs):
-        users=Profile.object.all()
+        #users=Profile.objects.all()
         context=super(ShowProfilePageView, self).get_context_data(*args,**kwargs)
         page_user=get_object_or_404(Profile, id=self.kwargs['pk'])
 
-        context["users"]=users
+        context["page_user"]=page_user
         return context
 
 
