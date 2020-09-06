@@ -10,6 +10,9 @@ class UsuarioGeneral(User):
 class UsuarioVerificado(User):
     pass
 
+class Moderador(User):
+    pass
+
 class Profile (models.Model):
     user=models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     bio= models.TextField()
