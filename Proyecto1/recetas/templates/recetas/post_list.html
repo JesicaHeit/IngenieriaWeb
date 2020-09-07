@@ -17,10 +17,11 @@
                 <p>{{ rec.published_date }}</p>
                 <p>{{ rec.ingredients }} </p>
                 <p>{{ rec.text|linebreaksbr }}</p>
-                <p>{{ rec.author }} </p>
-                <h3>
+
+                <h5>
                     <a href="{% url 'show_profile_page' pk=rec.author.pk %}">{{ rec.author }}</a>
-                </h3>
+                </h5>
+                <br>
             </div>
         {% endfor %}
     {%endblock%}
