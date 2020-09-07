@@ -1,14 +1,15 @@
 {% extends 'base_template.html' %}
-{%block content%}
+{% load static %}
+{% block content %}
     <h1>Perfil</h1>
     <br/>
 <div class="card mb-3">
     <div class="row no-gutters">
         <div class="col md-2">
-            {%if page_user.profile_pic%}
+            {% if page_user.profile_pic %}
                 <img src="{{page_user.profile_pic.url}}" class="card-img">
             {%else%}
-                <img src="#" class="card-img" class="card-img">
+                <img src="{% static 'Proyecto1/images/profile'%}" class="card-img" class="card-img">
             {%endif%}
         </div>
             <div class="col-md-10">
@@ -34,6 +35,7 @@
                     <a href="{{page_user.pinterest_url}}">Pinterest</a>
                 {%endif%}
             </p>
+                {{page_user.bio}}
                 <p class="card-text"></p>
             </div>
         </div>
