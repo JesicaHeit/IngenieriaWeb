@@ -129,7 +129,7 @@ def login(request):
                 return redirect('/home')
 
     # Si llegamos al final renderizamos el formulario
-    return render(request, "users/login.html", {'form': form})
+    return render(request, "registration/login.html", {'form': form})
 
 
 def logout(request):
@@ -137,6 +137,16 @@ def logout(request):
     do_logout(request)
     # Redireccionamos a la portada
     return redirect('/')
+
+def show_profile(request,pk):
+    profile=get_object_or_404(Profile, user__id=pk)
+    return render(
+    	request,
+        'registration/user_profile.html',
+        {
+            'page_user':profile
+        }
+    )
 
 class ShowProfilePageView (DetailView):
     model= Profile
