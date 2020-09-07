@@ -17,14 +17,6 @@
         <table>
             {{ form.as_table }}
         </table>
-        {% if request.user.is_authenticated%}
-            <li> <a href="/recipes"><font face="verdana">Ver recetas</font></a></li>
-            <li><a href="/accounts/logout"><font face="verdana">Cerrar sesion</font></a></li>
-        {%else%}
-            <li><a href="/accounts/login"><font face="verdana">Iniciar sesion</font></a></li>
-            <li><a href="/register"><font face="verdana">Registrarse</font></a></li>
-            <li> <a href="/recipes"><font face="verdana">Ver recetas</font></a></li>
-        {%endif%}
     </form>
 
 {%endblock%}
