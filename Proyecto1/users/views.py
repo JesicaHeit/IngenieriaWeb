@@ -20,8 +20,7 @@ from .tokens import account_activation_token
 from .forms import CustomUserForm
 from django.views.generic import DetailView
 from .models import Profile
-from .models import Seguidores
-from django.contrib.auth.decorators import login_required
+
 
 def welcome(request):
     # Si estamos identificados devolvemos la portada
@@ -106,22 +105,6 @@ def activate(request, uidb64=None, token=None):
    
     return HttpResponseRedirect('/login')
 
-@login_required()
-def follow(request):
-    form = Seguidores()
-    if request.method == "POST":
-        form = Seguidores(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user
-            post.save()
-            return HttpResponseRedirect('/home')
-    return HttpResponseRedirect('/home')
-
-def list_detail(request,pk):
-    seguidor = get_object_or_404(Seguidores, pk=pk)
-    return render(request,'users/follow.html',{})
-
 
 def login(request):
     # Creamos el formulario de autenticación vacío
@@ -174,4 +157,3 @@ class UserEditView (generic.UpdateView):
     success_url=reverse_lazy('home')
     def get_object(self):
         return self.request.user
-
