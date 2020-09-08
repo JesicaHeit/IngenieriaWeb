@@ -20,6 +20,10 @@ from .tokens import account_activation_token
 from .forms import CustomUserForm
 from django.views.generic import DetailView
 from .models import Profile
+from django.apps import apps
+modelReceta = apps.get_model('recetas', 'Receta')
+from django.utils import timezone
+from django.template import Context, Template
 
 
 def welcome(request):
@@ -140,13 +144,10 @@ def logout(request):
 
 def show_profile(request,pk):
     profile=get_object_or_404(Profile, user__id=pk)
-    return render(
-    	request,
-        'registration/user_profile.html',
-        {
-            'page_user':profile
-        }
-    )
+    name = profile.user
+    receta = modelReceta.objects.filter(author=name, published_date__lte=timezone.now()).order_by('published_date')
+
+    return render(request,'registration/user_profile.html',{'page_user': profile, 'receta': receta})
 
 class ShowProfilePageView (DetailView):
     model= Profile

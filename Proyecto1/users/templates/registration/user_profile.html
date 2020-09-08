@@ -1,7 +1,8 @@
 {% extends 'base_template.html' %}
 {% load static %}
 {% block content %}
-    <h1>Perfil</h1>
+
+    <h1>Perfil {{page_user.user}}</h1>
     <br/>
 <div class="card mb-3">
     <div class="row no-gutters">
@@ -37,10 +38,26 @@
             </p>
                 {{page_user.bio}}
                 <p class="card-text"></p>
+
             </div>
         </div>
+
         </div>
+
     </div>
+ {% for rec in receta %}
+            <div>
+                <h2><a href="{% url 'post_detail' pk=rec.pk %}">{{ rec.title }}</a></h2>
+                <p>{{ rec.published_date }}</p>
+                <p>{{ rec.ingredients }} </p>
+                <p>{{ rec.text|linebreaksbr }}</p>
+
+                <h5>
+                </h5>
+                <br>
+            </div>
+        {% endfor %}
 </div>
+
     <br/><br/>
 {% endblock content%}
