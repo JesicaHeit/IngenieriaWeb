@@ -23,6 +23,7 @@ from users.views import register
 from users.views import activate
 from users.views import login
 from users.views import logout
+from users.views import ProfileListView
 from Proyecto1.views import home
 from Proyecto1.views import recipes
 from Proyecto1.views import pantalla_intermedia
@@ -58,5 +59,6 @@ urlpatterns = [
     path('profile/<int:pk>', show_profile, name='show_profile_page'),
     path('post/<int:pk>/edit/', post_edit, name='post_edit'),
     path('borrar/<int:pk>/', borrar_receta, name='borrar_receta'),
-
+    path('',ProfileListView.as_view(), name='profile-list-view'),
+    path('profiles/', include('users.urls', namespace = 'profiles')),
 ]
