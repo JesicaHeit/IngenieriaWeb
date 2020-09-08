@@ -146,7 +146,6 @@ def show_profile(request,pk):
     profile=get_object_or_404(Profile, user__id=pk)
     name = profile.user
     receta = modelReceta.objects.filter(author=name, published_date__lte=timezone.now()).order_by('published_date')
-
     return render(request,'registration/user_profile.html',{'page_user': profile, 'receta': receta})
 
 class ShowProfilePageView (DetailView):

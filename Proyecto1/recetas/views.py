@@ -30,8 +30,9 @@ def post_list(request):
 
 def post_list2(request):
     if request.user.is_authenticated:
+        profile = request.user
         receta = Receta.objects.filter(author=request.user,published_date__lte=timezone.now()).order_by('published_date')
-        return render(request, 'recetas/post_list2.html', {'receta': receta})
+        return render(request, 'recetas/post_list2.html', {'page_user': profile,'receta': receta})
 
 def post_detail (request, pk):
     receta = get_object_or_404(Receta, pk=pk)
