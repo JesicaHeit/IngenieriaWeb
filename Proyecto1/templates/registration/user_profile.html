@@ -1,0 +1,63 @@
+{% extends 'base_template.html' %}
+{% load static %}
+{% block content %}
+
+    <h1>Perfil {{page_user.user}}</h1>
+    <br/>
+<div class="card mb-3">
+    <div class="row no-gutters">
+        <div class="col md-2">
+            {% if page_user.profile_pic %}
+                <img src="{{page_user.profile_pic.url}}" class="card-img">
+            {%else%}
+                <img src="{% static 'Proyecto1/images/profile'%}" class="card-img" class="card-img">
+            {%endif%}
+        </div>
+            <div class="col-md-10">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{page_user.user.first_name}}
+                    {{page_user.user.last_name}}
+                </h5>
+<p class="small text-muted">
+                {%if page_user.website_url%}
+                    <a href="{{page_user.website_url}}">Website</a>
+                {%endif%}
+                {%if page_user.facebook_url%}
+                    <a href="{{page_user.facebook_url}}">Facebook</a>
+                {%endif%}
+                {%if page_user.instagram_url%}
+                    <a href="{{page_user.instagram_url}}">Instagram</a>
+                {%endif%}
+                {%if page_user.twitter_url%}
+                    <a href="{{page_user.twitter_url}}">Twitter</a>
+                {%endif%}
+                {%if page_user.pinterest_url%}
+                    <a href="{{page_user.pinterest_url}}">Pinterest</a>
+                {%endif%}
+            </p>
+                {{page_user.bio}}
+                <p class="card-text"></p>
+
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+ {% for rec in receta %}
+            <div>
+                <h2><a href="{% url 'post_detail' pk=rec.pk %}">{{ rec.title }}</a></h2>
+                <p>{{ rec.published_date }}</p>
+                <p>{{ rec.ingredients }} </p>
+                <p>{{ rec.text|linebreaksbr }}</p>
+
+                <h5>
+                </h5>
+                <br>
+            </div>
+        {% endfor %}
+</div>
+
+    <br/><br/>
+{% endblock content%}
