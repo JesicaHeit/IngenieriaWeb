@@ -31,6 +31,7 @@ from recetas.views import post_new
 from recetas.views import post_list
 from recetas.views import post_detail
 from recetas.views import post_list2
+from recetas.views import post_edit
 from users.views import UserEditView,ShowProfilePageView, show_profile
 
 urlpatterns = [
@@ -52,5 +53,6 @@ urlpatterns = [
     path('post/<int:pk>/', post_detail, name='post_detail'),
     path('edit_profile/', UserEditView.as_view(), name='edit_profile'),
     path('profile/<int:pk>', show_profile, name='show_profile_page'),
+    path('post/<int:pk>/edit/', post_edit, name='post_edit')
 
 ]
