@@ -14,14 +14,10 @@
         <table>
             {{ form.as_table }}
         </table>
-
-        <input type="reset" value="Limpiar">
-        <input type="submit" value="Login">
-
-
-        <li>
-            <a href="{%url 'password_reset'%}"><font face="verdana">Olvidé mi contraseña</font></a>
-        </li>
+        <br>
+        <button type="submit" class="btn btn-dark">Login</button>
+        <button type="reset" class="btn btn-dark">Limpiar</button>
+        <a class="btn btn-dark" href="{%url 'password_reset'%}"><font face="verdana">Olvidé mi contraseña</font></a>
         
     </form>
 {%endblock%}
