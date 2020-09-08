@@ -11,13 +11,14 @@
         {% for rec in receta %}
             <div>
                 <h2><a href="{% url 'post_detail' pk=rec.pk %}">{{ rec.title }}</a></h2>
+                 <h5>
+                    <a href="{% url 'show_profile_page' pk=rec.author.pk %}">{{ rec.author }}</a>
+                </h5>
                 <p>{{ rec.published_date }}</p>
                 <p>{{ rec.ingredients }} </p>
                 <p>{{ rec.text|linebreaksbr }}</p>
 
-                <h5>
-                    <a href="{% url 'show_profile_page' pk=rec.author.pk %}">{{ rec.author }}</a>
-                </h5>
+
                 <br>
             </div>
         {% endfor %}
