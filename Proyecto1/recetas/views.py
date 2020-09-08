@@ -55,3 +55,11 @@ def post_edit(request, pk):
     else:
         form = RecetasForm(instance=receta)
     return render(request, 'recetas/post_edit.html', {'form': form})
+
+def borrar_receta(request, pk):
+    # Recuperamos la instancia de la persona y la borramos
+    instancia = Receta.objects.get(pk=pk)
+    instancia.delete()
+
+    # Después redireccionamos de nuevo a la lista
+    return redirect('receta_user')
