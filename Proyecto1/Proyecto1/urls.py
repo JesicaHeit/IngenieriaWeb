@@ -52,5 +52,5 @@ urlpatterns = [
     path('post/<int:pk>/', post_detail, name='post_detail'),
     path('edit_profile/', UserEditView.as_view(), name='edit_profile'),
     path('profile/<int:pk>', show_profile, name='show_profile_page'),
-    path('password/', auth_views.PasswordChangeView.as_view(template_name='registration/password_change_form.html')),
+
 ]
