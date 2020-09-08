@@ -17,7 +17,7 @@ def post_new(request):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-            return redirect('/home')
+            return redirect('/receta_user')
     else:
         form = RecetasForm()
     return render(request, 'recetas/post_edit.html', {'form': form})
