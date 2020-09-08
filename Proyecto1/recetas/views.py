@@ -38,6 +38,10 @@ def post_detail (request, pk):
     receta = get_object_or_404(Receta, pk=pk)
     return render(request, 'recetas/post_detail.html', {'receta': receta})
 
+def post_detail2 (request, pk):
+    receta = get_object_or_404(Receta, pk=pk)
+    return render(request, 'recetas/post_detail2.html', {'receta': receta})
+
 def post_edit(request, pk):
     receta = get_object_or_404(Receta, pk=pk)
     if request.method == "POST":

@@ -16,6 +16,7 @@
         <h2>{{ receta.title }}</h2>
         <h2>{{ receta.ingredients }}</h2>
         <p>{{ receta.text|linebreaksbr }}</p>
+        <a class="btn btn-dark" href="{% url 'post_edit' pk=receta.pk %}">Editar receta</a>
     </div>
 {%endblock%}
 </body>
