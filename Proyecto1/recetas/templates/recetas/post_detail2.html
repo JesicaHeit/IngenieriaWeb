@@ -14,7 +14,7 @@
             </div>
         {% endif %}
         <h2>{{ receta.title }}</h2>
-        <h2>{{ receta.ingredients }}</h2>
+        <p>{{ receta.ingredients }}</p>
         <p>{{ receta.text|linebreaksbr }}</p>
         <a class="btn btn-dark" href="{% url 'post_edit' pk=receta.pk %}">Editar receta</a>
         <a class="btn btn-dark" href="{% url 'borrar_receta' pk=receta.pk %}"
