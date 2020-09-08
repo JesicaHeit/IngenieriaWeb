@@ -26,12 +26,7 @@ from django.utils import timezone
 from django.template import Context, Template
 
 
-def welcome(request):
-    # Si estamos identificados devolvemos la portada
-    if request.user.is_authenticated:
-        return render(request, "users/welcome.html")
-    # En otro caso redireccionamos al login
-    return redirect('/login')
+
 
 
 def register(request):
