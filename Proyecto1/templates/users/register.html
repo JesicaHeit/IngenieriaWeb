@@ -14,12 +14,12 @@
             {{ form.as_table }}
         </table>
 
-        <input type="reset" value="Limpiar">
-        <input type="submit" value="Registrar">
+        <button type="submit" class="btn btn-dark">Registrar</button>
+        <button type="reset" class="btn btn-dark">Limpiar</button>
     </form>
 {%endblock%}
 </body>
 </html>
 <hr />
 
-<a href="/accounts/login">Iniciar sesión</a>
+<a class="btn btn-dark" href="/accounts/login">Iniciar sesión</a>
