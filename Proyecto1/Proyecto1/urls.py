@@ -24,6 +24,8 @@ from users.views import activate
 from users.views import login
 from users.views import logout
 from users.views import ProfileListView
+
+from users.views import follow_unfollow_profile
 from Proyecto1.views import home
 from Proyecto1.views import recipes
 from Proyecto1.views import pantalla_intermedia
@@ -56,9 +58,11 @@ urlpatterns = [
     path('post/<int:pk>/', post_detail, name='post_detail'),
     path('userpost/<int:pk>/', post_detail2, name='post_detail2'),
     path('edit_profile/', UserEditView.as_view(), name='edit_profile'),
-    path('profile/<int:pk>', show_profile, name='show_profile_page'),
+    #path('profile/<int:pk>', show_profile, name='show_profile_page'),
+    path('profile/<int:pk>', ShowProfilePageView.as_view(), name='show_profile_page'),
     path('post/<int:pk>/edit/', post_edit, name='post_edit'),
     path('borrar/<int:pk>/', borrar_receta, name='borrar_receta'),
-    path('',ProfileListView.as_view(), name='profile-list-view'),
-    path('profiles/', include('users.urls', namespace = 'profiles')),
+
+    path('switch_follow/', follow_unfollow_profile, name ='follow_unfollow_profile'),
+   
 ]
