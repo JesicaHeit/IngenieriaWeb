@@ -1,7 +1,8 @@
 {% extends 'base_template.html' %}
 {% load static %}
 {% block content %}
-
+{%include 'users/base.html' %}
+<!-- modal -->
     <h1>Perfil {{page_user.user}}</h1>
     <br/>
 <div class="card mb-3">
@@ -45,6 +46,26 @@
         </div>
 
     </div>
+
+        {% if user.is_authenticated %}
+                {% if follow %}
+                    <form action="{% url 'follow_unfollow_profile' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="profile_pk" value={{object.pk}}>
+                        <button type="submit" class="ui negative button">Dejar de Seguir</button>
+                    </form> 
+                {% else %}
+                    {% if my_profile != page_user %}
+                        <form action="{% url 'follow_unfollow_profile' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="profile_pk" value={{object.pk}}>
+                                <button type="submit" id="follow-btn" class="ui positive button">Seguir</button>
+                        </form>
+                    {% endif %}
+                {% endif %}
+        {% endif %}
+
+
  {% for rec in receta %}
             <div>
                 <h2><a href="{% url 'post_detail' pk=rec.pk %}">{{ rec.title }}</a></h2>
@@ -60,4 +81,19 @@
 </div>
 
     <br/><br/>
-{% endblock content%}
+
+
+{% endblock content %}
+
+{% block scripts %}
+<script>
+$(document).ready(function(){
+    $('#follow-btn').click(function(){
+        $('.ui.basic.modal')
+        .modal('show')
+    })
+;
+})
+
+</script>
+{% endblock scripts %}
