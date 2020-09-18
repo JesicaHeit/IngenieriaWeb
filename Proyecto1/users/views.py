@@ -134,6 +134,7 @@ def logout(request):
     # Redireccionamos a la portada
     return redirect('/')
 
+
 def show_profile(request,pk):
     profile=get_object_or_404(Profile, user__id=pk)
     name = profile.user
@@ -141,16 +142,40 @@ def show_profile(request,pk):
     return render(request,'registration/user_profile.html',{'page_user': profile, 'receta': receta})
 
 class ShowProfilePageView (DetailView):
-    model= Profile
-    template_name='registration/user_profile.html'
 
-    def get_context_data(self,*args, **kwargs):
-        #users=Profile.objects.all()
-        context=super(ShowProfilePageView, self).get_context_data(*args,**kwargs)
-        page_user=get_object_or_404(Profile, id=self.kwargs['pk'])
+	model= Profile
+	template_name='registration/user_profile.html'
 
-        context["page_user"]=page_user
-        return context
+	def get_context_data(self, *args, **kwargs):
+		context = super(ShowProfilePageView,self).get_context_data(*args, **kwargs)
+
+		page_user=get_object_or_404(Profile, id=self.kwargs['pk']) #Obtener perfil
+		
+		my_profile = Profile.objects.get(user=self.request.user) #Usuario
+
+		name =page_user.user
+
+		receta = modelReceta.objects.filter(author=name, published_date__lte=timezone.now()).order_by('published_date')
+
+		view_profile = self.get_object()
+		if view_profile.user in my_profile.following.all():
+			follow = True
+		else:
+			follow = False
+
+		context["follow"] = follow
+
+		context["page_user"]= page_user
+		context["my_profile"] = my_profile
+
+		context["name"]		= name
+		context["receta"]	= receta
+		return context
+
+	def get_object(self, **kwargs):
+		pk = self.kwargs.get('pk')
+		view_profile = Profile.objects.get(pk=pk)
+		return view_profile
 
 
 class UserEditView (generic.UpdateView):
@@ -172,33 +197,14 @@ def follow_unfollow_profile(request):
         else:
             my_profile.following.add(obj.user)
         return redirect(request.META.get('HTTP_REFERER'))
-    return redirect('profiles:profile-list-view')
+    return HttpResponseRedirect('profile/<int:pk>')
 
 
 class ProfileListView(ListView):
     model = Profile
-    template_name ='profiles/main.html'
+    template_name ='main.html'
     context_object_name = 'profiles'
 
     def get_queryset(self):
         return Profile.objects.all().exclude(user=self.request.user)
 
-class ProfileDetailView(DetailView):
-    model = Profile
-    template_name = 'profiles/detail.html'
-
-    def get_object(self, **kwargs):
-        pk = self.kwargs.get('pk')
-        view_profile = Profile.objects.get(pk=pk)
-        return view_profile
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        view_profile = self.get_object()
-        my_profile = Profile.objects.get(user=self.request.user)
-        if view_profile.user in my_profile.following.all():
-            follow = True
-        else:
-            follow = False
-        context["follow"] = follow
-        return context
