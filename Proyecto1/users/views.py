@@ -41,7 +41,7 @@ def register(request):
             user = form.save(commit= False)
             user.is_active = False
             user.save()
-
+            Profile.objects.create(user=user)
             uidb64= urlsafe_base64_encode(force_bytes(user.pk)) # crea el token encodeado
 
             domain = get_current_site(request).domain
@@ -149,7 +149,7 @@ class ShowProfilePageView (DetailView):
 	def get_context_data(self, *args, **kwargs):
 		context = super(ShowProfilePageView,self).get_context_data(*args, **kwargs)
 
-		page_user=get_object_or_404(Profile, id=self.kwargs['pk']) #Obtener perfil
+		page_user=get_object_or_404(Profile, user__id=self.kwargs['pk']) #Obtener perfil
 		
 		my_profile = Profile.objects.get(user=self.request.user) #Usuario
 
@@ -173,8 +173,7 @@ class ShowProfilePageView (DetailView):
 		return context
 
 	def get_object(self, **kwargs):
-		pk = self.kwargs.get('pk')
-		view_profile = Profile.objects.get(pk=pk)
+		view_profile = Profile.objects.get( user__id=self.kwargs['pk'])
 		return view_profile
 
 
