@@ -7,36 +7,32 @@
 <div class="card mb-3">
     <div class="row no-gutters">
         <div class="col md-2">
-            {% if page_user.profile_pic %}
-                <img src="{{page_user.profile_pic.url}}" class="card-img">
-            {%else%}
-                <img src="{% static 'Proyecto1/images/profile'%}" class="card-img" class="card-img">
-            {%endif%}
+            <img src="{{page_user.profile.profile_pic.url}}" class="card-img">
         </div>
             <div class="col-md-10">
             <div class="card-body">
                 <h5 class="card-title">
-                    {{page_user.user.first_name}}
-                    {{page_user.user.last_name}}
+                    {{rec.author.first_name}}
+                    {{rec.author.last_name}}
                 </h5>
 <p class="small text-muted">
-                {%if page_user.website_url%}
-                    <a href="{{page_user.website_url}}">Website</a>
+                {%if page_user.profile.website_url%}
+                    <a href="{{page_user.profile.website_url}}">Website</a>
                 {%endif%}
-                {%if page_user.facebook_url%}
-                    <a href="{{page_user.facebook_url}}">Facebook</a>
+                {%if page_user.profile.facebook_url%}
+                    <a href="{{page_user.profile.facebook_url}}">Facebook</a>
                 {%endif%}
-                {%if page_user.instagram_url%}
-                    <a href="{{page_user.instagram_url}}">Instagram</a>
+                {%if page_user.profile.instagram_url%}
+                    <a href="{{page_user.profile.instagram_url}}">Instagram</a>
                 {%endif%}
-                {%if page_user.twitter_url%}
-                    <a href="{{page_user.twitter_url}}">Twitter</a>
+                {%if page_user.profile.twitter_url%}
+                    <a href="{{page_user.profile.twitter_url}}">Twitter</a>
                 {%endif%}
-                {%if page_user.pinterest_url%}
-                    <a href="{{page_user.pinterest_url}}">Pinterest</a>
+                {%if page_user.profile.pinterest_url%}
+                    <a href="{{page_user.profile.pinterest_url}}">Pinterest</a>
                 {%endif%}
             </p>
-                {{page_user.bio}}
+                {{page_user.profile.bio}}
                 <p class="card-text"></p>
 
             </div>
