@@ -6,6 +6,8 @@ from Proyecto1.views import home
 from .models import Receta
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 @login_required()
@@ -25,7 +27,7 @@ def post_new(request):
 def post_list(request):
     ''
     #if request.user.is_authenticated:
-    receta = Receta.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    receta = Receta.objects.all().order_by('-likes')
     return render(request, 'recetas/post_list.html', {'receta': receta})
 
 def post_list2(request):
@@ -36,7 +38,12 @@ def post_list2(request):
 
 def post_detail (request, pk):
     receta = get_object_or_404(Receta, pk=pk)
-    return render(request, 'recetas/post_detail.html', {'receta': receta})
+    total_likes=receta.total_likes()
+    total_unlikes=receta.total_unlikes()
+    liked=False
+    if receta.likes.filter(id=request.user.id):
+        liked=True
+    return render(request, 'recetas/post_detail.html', {'receta': receta, 'total_likes':total_likes,'total_unlikes':total_unlikes, 'liked':liked})
 
 def post_detail2 (request, pk):
     receta = get_object_or_404(Receta, pk=pk)
@@ -63,3 +70,20 @@ def borrar_receta(request, pk):
 
     # Después redireccionamos de nuevo a la lista
     return redirect('receta_user')
+
+def UnLikeView (request, pk):
+    receta = get_object_or_404(Receta, id=request.POST.get('receta_id'))
+    receta.unlikes.add(request.user)
+    return HttpResponseRedirect(reverse('post_detail',args=[str(pk)]))
+
+
+def LikeView (request, pk):
+    receta = get_object_or_404(Receta, id=request.POST.get('receta_id'))
+    liked=True
+    if receta.likes.filter(id=request.user.id):
+        receta.likes.remove(request.user)
+        liked=False
+    else:
+        receta.likes.add(request.user)
+        liked=True
+    return HttpResponseRedirect(reverse('post_detail',args=[str(pk)]))
