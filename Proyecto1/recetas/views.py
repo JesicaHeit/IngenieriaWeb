@@ -39,11 +39,10 @@ def post_list2(request):
 def post_detail (request, pk):
     receta = get_object_or_404(Receta, pk=pk)
     total_likes=receta.total_likes()
-    total_unlikes=receta.total_unlikes()
     liked=False
     if receta.likes.filter(id=request.user.id):
         liked=True
-    return render(request, 'recetas/post_detail.html', {'receta': receta, 'total_likes':total_likes,'total_unlikes':total_unlikes, 'liked':liked})
+    return render(request, 'recetas/post_detail.html', {'receta': receta, 'total_likes':total_likes, 'liked':liked})
 
 def post_detail2 (request, pk):
     receta = get_object_or_404(Receta, pk=pk)
@@ -71,10 +70,6 @@ def borrar_receta(request, pk):
     # Después redireccionamos de nuevo a la lista
     return redirect('receta_user')
 
-def UnLikeView (request, pk):
-    receta = get_object_or_404(Receta, id=request.POST.get('receta_id'))
-    receta.unlikes.add(request.user)
-    return HttpResponseRedirect(reverse('post_detail',args=[str(pk)]))
 
 
 def LikeView (request, pk):
