@@ -17,6 +17,24 @@
         <p>{{ receta.ingredients }}</p>
         <p>{{ receta.text|linebreaksbr }}</p>
     </div>
+    <br/><br/>
+    <hr>
+    <br/>
+    <form action="{%url 'like_post' receta.pk%}" method="POST">
+        {%csrf_token%}
+        {%if user.is_authenticated%}
+            {%if liked%}
+                <button type="submit", name="receta_id", value="{{receta.id}}", class="btn btn-danger btn-sm">Unlike</button> - {{total_likes}} Likes
+            {%else%}
+                <button type="submit", name="receta_id", value="{{receta.id}}", class="btn btn-dark btn-sm">Like</button> - {{total_likes}} Likes
+            {%endif%}
+            <form action="{%url 'unlike_post' receta.pk%}" method="POST">
+                <button type="submit", name="receta_id", value="{{receta.id}}", class="btn btn-danger btn-sm">Unlike</button> - {{total_unlikes}} Unlikes
+            </form>
+        {%else%}
+            <small>Inicie sesión para likear</small> - {{total_likes}} Likes
+        {%endif%}
+    </form>
 {%endblock%}
 </body>
 </html>
