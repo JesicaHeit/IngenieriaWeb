@@ -36,13 +36,13 @@
             </p>
                 {{page_user.profile.bio}}
                 <p class="card-text"></p>
-
             </div>
         </div>
 
         </div>
 
     </div>
+<br>
  {% for rec in receta %}
             <div>
                 <h2><a href="{% url 'post_detail2' pk=rec.pk %}">{{ rec.title }}</a></h2>
