@@ -11,6 +11,15 @@ class Receta(models.Model):
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
+    likes= models.ManyToManyField('auth.User', related_name='receta_post')
+    unlikes = models.ManyToManyField('auth.User', related_name='receta_unlike_post')
+
+
+    def total_likes(self):
+        return self.likes.count()
+
+    def total_unlikes(self):
+        return self.unlikes.count()
 
     def publish(self):
         self.published_date = timezone.now()
