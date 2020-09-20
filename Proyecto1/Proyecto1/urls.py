@@ -38,7 +38,7 @@ from recetas.views import post_list2
 from recetas.views import post_edit
 from recetas.views import post_detail2
 from recetas.views import borrar_receta
-from recetas.views import LikeView, UnLikeView
+from recetas.views import LikeView
 from users.views import UserEditView,ShowProfilePageView, show_profile
 
 urlpatterns = [
@@ -65,7 +65,6 @@ urlpatterns = [
     path('post/<int:pk>/edit/', post_edit, name='post_edit'),
     path('borrar/<int:pk>/', borrar_receta, name='borrar_receta'),
     path('like/<int:pk>', LikeView, name='like_post'),
-    path('unlike/<int:pk>', UnLikeView, name='unlike_post'),
     path('switch_follow/', follow_unfollow_profile, name ='follow_unfollow_profile'),
 
 
