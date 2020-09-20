@@ -66,6 +66,7 @@
 
  {% for rec in receta %}
             <div>
+                <br>
                 <h2><a href="{% url 'post_detail' pk=rec.pk %}">{{ rec.title }}</a></h2>
                 <p>{{ rec.published_date }}</p>
                 <p>{{ rec.ingredients }} </p>
