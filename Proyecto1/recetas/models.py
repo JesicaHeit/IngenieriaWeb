@@ -8,8 +8,8 @@ from ckeditor.fields import RichTextField
 class Receta(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    ingredients = models.TextField(default='')
-    text = RichTextField(verbose_name="Contenido")
+    ingredients = RichTextField(config_name='nombre_referencia',verbose_name="Ingredientes",default='')
+    text = RichTextField(config_name='default',verbose_name="Receta")
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     likes= models.ManyToManyField('auth.User', related_name='receta_post')

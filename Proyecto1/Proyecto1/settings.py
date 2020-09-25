@@ -142,4 +142,40 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 RECAPTCHA_PRIVATE_KEY='6LdwP8gZAAAAAD43s0X5GFXIEv38dmQ3wvi0CnM3'
 RECAPTCHA_PUBLIC_KEY='6LdwP8gZAAAAAKDPfb8Uw7vZugEcFw_vXr3-bDBo'
 
+MEDIA_URL = '/media/'
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_CONFIGS = {
+    'default':{
+        'toolbar': None,
+    },
+    'nombre_referencia':
+             {'toolbar': [[ "Bold", "Italic", "Underline"],["TextColor"],
+                 ["Font","FontSize"]]},
+    }
+
+
+
+"""
+CKEDITOR.editorConfig = function( config ) {
+	config.toolbar = [
+		{ name: 'document', items: [ 'Source', '-', 'Save', 'NewPage', 
+		'ExportPdf', 'Preview', 'Print', '-', 'Templates' ] },
+		{ name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+		{ name: 'editing', items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
+		{ name: 'forms', items: [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },
+		'/',
+		{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat' ] },
+		{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ] },
+		{ name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+		{ name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
+		'/',
+		{ name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
+		{ name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+		{ name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
+		{ name: 'about', items: [ 'About' ] }
+	];
+"""
+
+
 #django_heroku.settings(locals())

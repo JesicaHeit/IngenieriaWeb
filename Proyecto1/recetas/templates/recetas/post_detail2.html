@@ -14,8 +14,8 @@
             </div>
         {% endif %}
         <h2>{{ receta.title }}</h2>
-        <p>{{ receta.ingredients }}</p>
-        <p>{{ receta.text|linebreaksbr }}</p>
+        <p>{{ receta.ingredients|safe  }}</p>
+        <p>{{ receta.text|safe }}</p>
         <a class="btn btn-dark" href="{% url 'post_edit' pk=receta.pk %}">Editar receta</a>
         <a class="btn btn-dark" href="{% url 'borrar_receta' pk=receta.pk %}"
         onClick="return confirm('¿Seguro que quieres eliminar la receta?');">

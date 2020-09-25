@@ -15,8 +15,8 @@
                     <a href="{% url 'show_profile_page' pk=rec.author.pk %}">{{ rec.author.profile }}</a>
                 </h5>
                 <p>Fecha de Publicación: {{ rec.published_date }}  Likes: {{ rec.total_likes}}</p>
-                <p>Ingredientes: {{ rec.ingredients }} </p>
-                <p>{{ rec.text|linebreaksbr }}</p>
+                <p>Ingredientes: {{ rec.ingredients|safe  }} </p>
+                <p>{{ rec.text|safe }}</p>
 
 
                 <br>

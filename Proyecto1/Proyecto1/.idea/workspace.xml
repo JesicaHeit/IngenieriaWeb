@@ -15,7 +15,7 @@
     <session id="-1020134017">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.34" value="2" />
           <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.6" value="3" />
@@ -24,12 +24,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="255" />
+          <entry key="py" value="268" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="255" />
+          <entry key="Python" value="268" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -73,10 +73,10 @@
         <entry file="file://$PROJECT_DIR$/../recetas/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="95">
-              <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+              <caret line="5" column="41" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
-                <marker date="1600952862134" expanded="true" signature="828:833" ph="..." />
+                <marker date="1600953093820" expanded="true" signature="840:845" ph="..." />
               </folding>
             </state>
           </provider>
@@ -236,7 +236,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2541106" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -377,10 +376,10 @@
     <entry file="file://$PROJECT_DIR$/../recetas/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
-          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+          <caret line="5" column="41" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
-            <marker date="1600952862134" expanded="true" signature="828:833" ph="..." />
+            <marker date="1600953093820" expanded="true" signature="840:845" ph="..." />
           </folding>
         </state>
       </provider>
