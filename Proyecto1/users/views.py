@@ -64,7 +64,7 @@ def register(request):
         else:
             form = CustomUserForm(request.POST)
         # Si llegamos al final renderizamos el formulario
-    return render(request, "users/register.html", {'form': form})
+    return render(request, "registration/register.html", {'form': form})
              
     # Si existe el usuario
     if user is not None:
