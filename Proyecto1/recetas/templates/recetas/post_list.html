@@ -10,13 +10,16 @@
 
         {% for rec in receta %}
             <div>
-                <h2><a href="{% url 'post_detail' pk=rec.pk %}">{{ rec.title }}</a></h2>
+                <p>
+                <h2>{{ rec.title }}</h2>
                  <h5>
-                    <a href="{% url 'show_profile_page' pk=rec.author.pk %}">{{ rec.author.profile }}</a>
+                    Por <a href="{% url 'show_profile_page' pk=rec.author.pk %}">{{ rec.author.profile }}</a>
                 </h5>
-                <p>Fecha de Publicación: {{ rec.published_date }}  Likes: {{ rec.total_likes}}</p>
+                <p>Fecha de Publicación: {{ rec.published_date }}  <strong>Likes: {{ rec.total_likes}}</strong></p>
                 <p>Ingredientes: {{ rec.ingredients|safe  }} </p>
-                <p>{{ rec.text|safe }}</p>
+                <a href="{% url 'post_detail' pk=rec.pk %}">Ver receta completa</a>
+
+                </p>
 
 
                 <br>
