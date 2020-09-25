@@ -176,6 +176,11 @@ class ShowProfilePageView (DetailView):
 		view_profile = Profile.objects.get( user__id=self.kwargs['pk'])
 		return view_profile
 
+class EditPofilePageView (generic.UpdateView):
+    model=Profile
+    template_name = 'registration/edit_profile.html'
+    fields = [ 'bio', 'profile_pic', 'facebook_url', 'twitter_url', 'pinterest_url', 'website_url',]
+    success_url = reverse_lazy('home')
 
 class UserEditView (generic.UpdateView):
     form_class=UserChangeForm
