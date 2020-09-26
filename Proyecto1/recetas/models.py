@@ -13,8 +13,7 @@ class Receta(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     likes= models.ManyToManyField('auth.User', related_name='receta_post')
-
-
+    imagen = models.ImageField(upload_to="foto_receta")
 
     def total_likes(self):
         return self.likes.count()

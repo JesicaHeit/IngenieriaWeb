@@ -17,7 +17,8 @@
                     Por <a href="{% url 'show_profile_page' pk=rec.author.pk %}">{{ rec.author.profile }}</a>
                  </h5>
                 <p>Fecha de Publicación: {{ rec.published_date }}  <strong>Likes: {{ rec.total_likes}}</strong></p>
-                <p>Ingredientes: {{ rec.ingredients|safe  }} </p>
+                <p> <img src = "{{ rec.imagen.url }}" width="300" height="300" /> </p>
+                    <p>Ingredientes: {{ rec.ingredients|safe  }} </p>
                 <a href="{% url 'post_detail' pk=rec.pk %}">Ver receta completa</a>
                 </p>
                 <br>
