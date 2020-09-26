@@ -7,6 +7,7 @@
 </head>
 <body>
 {%block content%}
+<div class="jumbotron">
     <div class="receta">
         {% if receta.published_date %}
             <div class="date">
@@ -45,7 +46,7 @@
 	{% empty %}
 		<p>No hay comentarios :(</p>
 	{% endfor %}
-
+</div>
 {%endblock content%}
 
 </body>
