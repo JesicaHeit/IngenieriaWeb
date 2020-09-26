@@ -1,4 +1,4 @@
-{% extends 'base_template.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
 {%include 'users/base.html' %}
@@ -82,7 +82,6 @@
     <br/><br/>
 
 
-{% endblock content %}
 
 {% block scripts %}
 <script>
@@ -96,3 +95,4 @@ $(document).ready(function(){
 
 </script>
 {% endblock scripts %}
+{%endblock content%}
