@@ -7,6 +7,7 @@
 </head>
 <body>
 {%block content%}
+<div class="jumbotron">
     <div class="receta">
         {% if receta.published_date %}
             <div class="date">
@@ -22,6 +23,7 @@
         onClick="return confirm('¿Seguro que quieres eliminar la receta?');">
             Eliminar receta</a>
     </div>
+</div>
 {%endblock%}
 </body>
 </html>
