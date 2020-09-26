@@ -1,9 +1,9 @@
-{% extends 'base_template.html' %}
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Receta</title>
 </head>
 <body>
 {%block content%}
@@ -32,7 +32,7 @@
             <small>Inicie sesión para likear</small> - {{total_likes}} Likes
         {%endif%}
     </form>
-    
+
     <hr>
 	<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=receta.pk %}">Agregar Comentario</a>
 	{% for comment in receta.comments.all %}
@@ -44,6 +44,8 @@
 	{% empty %}
 		<p>No hay comentarios :(</p>
 	{% endfor %}
-{%endblock%}
+
+{%endblock content%}
+
 </body>
 </html>
