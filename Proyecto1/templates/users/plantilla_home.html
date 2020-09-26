@@ -5,21 +5,17 @@
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
-#style="color: tomato"
-<body>
 {%block content%}
-    <h1 >
-        ¡Bienvenidos! Esta es nuestra página de inicio.
-    </h1>
-    <form action ="" method="POST">
+<body>
+
+<form action ="" method="POST">
         {% csrf_token %}
 
         <table>
             {{ form.as_table }}
         </table>
-    </form>
-
-{%endblock%}
+</form>
 
 </body>
+{%endblock%}
 </html>
