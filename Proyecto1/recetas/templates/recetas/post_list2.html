@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
+<html>
+    <head>
+        {%block title%}
+        <title>Mis Recetas</title>
+        {%endblock%}
+    </head>
     <h1>Mi perfil</h1>
     <br/>
 <div class="card mb-3">
@@ -63,3 +68,4 @@
 
     <br/><br/>
 {% endblock content%}
+</html>
