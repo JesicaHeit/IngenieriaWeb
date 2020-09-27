@@ -84,15 +84,17 @@ def LikeView (request, pk):
         liked=True
     return HttpResponseRedirect(reverse('post_detail',args=[str(pk)]))
 
+@login_required()
 def add_comment_to_post(request, pk):
     receta = get_object_or_404(Receta, pk=pk)
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
+            comment.author = request.user
             comment.post = receta
             comment.save()
             return redirect('post_detail', pk=receta.pk)
     else:
-        form = CommentForm()
+        form = CommentForm(initial={'author':request.user})
     return render(request, 'Comment/add_comment_to_post.html', {'form': form})

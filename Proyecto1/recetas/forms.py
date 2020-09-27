@@ -1,4 +1,5 @@
 from django import forms
+from django.db import models
 from .models import Receta, Comment
 
 class RecetasForm(forms.ModelForm):
@@ -7,6 +8,7 @@ class RecetasForm(forms.ModelForm):
         fields = ('title', 'imagen','ingredients','text',)
 
 class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-        fields = ('author', 'text',)
+	author = forms.CharField(widget=forms.TextInput(attrs={'readonly': True}), max_length = 200)
+	class Meta:
+		model = Comment
+		fields = ('author','text',)
