@@ -35,7 +35,7 @@ def post_list(request):
 def post_list2(request):
     if request.user.is_authenticated:
         profile = request.user
-        receta = Receta.objects.all().annotate(like_count=Count('likes')).order_by('-like_count')
+        receta = Receta.objects.filter(author=request.user,published_date__lte=timezone.now()).order_by('-published_date')
         return render(request, 'recetas/post_list2.html', {'page_user': profile,'receta': receta})
 
 def post_detail (request, pk):
