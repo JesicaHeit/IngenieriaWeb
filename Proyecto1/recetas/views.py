@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Exists, Count
 from django.utils import timezone
 from .forms import RecetasForm
 from Proyecto1 import views
@@ -28,13 +29,13 @@ def post_new(request):
 def post_list(request):
     ''
     #if request.user.is_authenticated:
-    receta = Receta.objects.all().order_by('-likes')
+    receta = Receta.objects.all().annotate(like_count=Count('likes')).order_by('-like_count')
     return render(request, 'recetas/post_list.html', {'receta': receta})
 
 def post_list2(request):
     if request.user.is_authenticated:
         profile = request.user
-        receta = Receta.objects.filter(author=request.user,published_date__lte=timezone.now()).order_by('-published_date')
+        receta = Receta.objects.all().annotate(like_count=Count('likes')).order_by('-like_count')
         return render(request, 'recetas/post_list2.html', {'page_user': profile,'receta': receta})
 
 def post_detail (request, pk):
