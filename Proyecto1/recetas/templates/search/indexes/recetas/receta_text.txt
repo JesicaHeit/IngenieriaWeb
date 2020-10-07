@@ -1,0 +1,9 @@
+{{ object.title }}
+
+{{ object.ingredients }}
+
+{{ object.text }}
+
+{{ object.author }}
+
+{{ object.published_date }}

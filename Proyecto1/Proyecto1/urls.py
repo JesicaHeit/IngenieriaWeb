@@ -71,6 +71,7 @@ urlpatterns = [
     path('switch_follow/', follow_unfollow_profile, name ='follow_unfollow_profile'),
     #path(r'^post/(?P<pk>\d+)/comment/$', views.add_comment_to_post, name='add_comment_to_post'),
     path('post/<int:pk>/comment/', views.add_comment_to_post, name='add_comment_to_post'),
+    path('search/', include('haystack.urls')),
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

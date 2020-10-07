@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'users',
     'recetas',
     'captcha',
+    'haystack',
     'ckeditor',
 ]
 
@@ -89,7 +90,12 @@ DATABASES = {
     }
 }
 
-
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
