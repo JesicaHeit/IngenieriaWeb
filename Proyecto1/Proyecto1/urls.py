@@ -43,6 +43,11 @@ from recetas.views import borrar_receta
 from recetas.views import LikeView
 from recetas.views import add_comment_to_post
 from users.views import UserEditView,ShowProfilePageView, show_profile, EditPofilePageView
+from django.urls import path
+from django.views.generic.base import TemplateView
+
+
+
 
 urlpatterns = [
 
@@ -72,6 +77,7 @@ urlpatterns = [
     #path(r'^post/(?P<pk>\d+)/comment/$', views.add_comment_to_post, name='add_comment_to_post'),
     path('post/<int:pk>/comment/', views.add_comment_to_post, name='add_comment_to_post'),
     path('search/', include('haystack.urls')),
+    path("robots.txt",TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),),
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
