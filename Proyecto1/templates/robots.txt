@@ -1,6 +1,5 @@
 User-Agent: *
-Disallow: /private/
-Disallow: /login
-Disallow: /post_detail.html
+Disallow: /login.html
+Disallow: /post_list.html
 Disallow: /register.html
 Disallow: /user_profile.html
