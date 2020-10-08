@@ -18,9 +18,18 @@
             <h3>Resultados:</h3>
 
             {% for result in page.object_list %}
-                <p>{{ result.text|safe }}</p>
+            <p>
+        <div>
+                <div class="jumbotron">
+                <p><h2>{{ result.text|safe }}</h2></p>
+                <p><h6>Por {{ result.author|safe }}</h6></p>
+                <p>{{ result.ingredients|safe }}</p>
+                <p>Ver receta completa</p>
+                <p>{{ result.created_date|safe }}</p>
+            </p>
             {% empty %}
                 <p>No se encontraron noticias.</p>
+    </form></div>
             {% endfor %}
 
             {% if page.has_previous or page.has_next %}
@@ -32,4 +41,4 @@
             {% endif %}
         {% endif %}
     </form>
-{% endblock %}
+        {% endblock %}

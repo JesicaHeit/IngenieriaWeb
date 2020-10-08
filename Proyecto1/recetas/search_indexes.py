@@ -6,6 +6,7 @@ class RecetaIndex(indexes.SearchIndex, indexes.Indexable):
     title = indexes.CharField(model_attr='title')
     ingredients = indexes.CharField(model_attr='ingredients')
     created_date = indexes.DateTimeField(model_attr='created_date')
+    author = indexes.CharField(model_attr='author')
 
     def get_model(self):
         return Receta

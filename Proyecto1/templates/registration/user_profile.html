@@ -68,10 +68,11 @@
             <div>
                 <div class="jumbotron">
                 <br>
-                <h2><a href="{% url 'post_detail' pk=rec.pk %}">{{ rec.title }}</a></h2>
+                <h2><a href="{% url 'post_detail' pk=rec.pk %}">{{ rec.title|safe}}</a></h2>
                 <p>{{ rec.published_date }}</p>
-                <p>{{ rec.ingredients }} </p>
-                <p>{{ rec.text|linebreaksbr }}</p>
+                    <p> <img src = "{{ rec.imagen.url }}" width="300" height="300"/> </p>
+                <p>{{ rec.ingredients|safe }} </p>
+                <p>{{ rec.text|safe }}</p>
 
                 <h5>
                 </h5>
