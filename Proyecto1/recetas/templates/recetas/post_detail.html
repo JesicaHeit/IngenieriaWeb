@@ -18,6 +18,9 @@
             </div>
         {% endif %}
         <h2>{{ receta.title }}</h2>
+        <h5>
+            Por <a href="{% url 'show_profile_page' pk=receta.author.pk %}">{{ receta.author.profile }}</a>
+        </h5>
         <p> <img src = "{{ receta.imagen.url }}" width="300" height="300"/> </p>
         <p>{{ receta.ingredients|safe }}</p>
         <p>{{ receta.text|safe }}</p>

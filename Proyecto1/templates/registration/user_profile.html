@@ -37,12 +37,9 @@
             </p>
                 {{page_user.bio}}
                 <p class="card-text"></p>
-
             </div>
         </div>
-
         </div>
-
     </div>
 
         {% if user.is_authenticated %}
@@ -65,20 +62,18 @@
     <br>
 
  {% for rec in receta %}
-            <div>
                 <div class="jumbotron">
                 <br>
-                <h2><a href="{% url 'post_detail' pk=rec.pk %}">{{ rec.title|safe}}</a></h2>
+                <h2>{{ rec.title|safe}}</h2>
                 <p>{{ rec.published_date }}</p>
                     <p> <img src = "{{ rec.imagen.url }}" width="300" height="300"/> </p>
                 <p>{{ rec.ingredients|safe }} </p>
-                <p>{{ rec.text|safe }}</p>
-
+                    <a href="{% url 'post_detail' pk=rec.pk %}">Ver receta completa</a>
                 <h5>
                 </h5>
                 <br>
             </div>
-            </div>
+
         {% endfor %}
 </div>
 
