@@ -21,11 +21,13 @@
             <p>
         <div>
                 <div class="jumbotron">
+
                 <p><h2>{{ result.text|safe }}</h2></p>
                 <p><h6>Por {{ result.author|safe }}</h6></p>
                 <p>{{ result.ingredients|safe }}</p>
-                <p>Ver receta completa</p>
+                <p><a href="{% url 'post_detail' pk=result.pk %}">Ver receta completa</a></p>
                 <p>{{ result.created_date|safe }}</p>
+
             </p>
             {% empty %}
                 <p>No se encontraron noticias.</p>
