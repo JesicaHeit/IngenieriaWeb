@@ -10,6 +10,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.core import management
+from django.core.management import call_command
+from django.core.management.commands import loaddata
+
 
 # Create your views here.
 @login_required()
@@ -24,6 +28,7 @@ def post_new(request):
             return redirect('/receta_user')
     else:
         form = RecetasForm()
+    #call_command('update_index')  # args and opions are optional.
     return render(request, 'recetas/post_edit.html', {'form': form})
 
 def post_list(request):
