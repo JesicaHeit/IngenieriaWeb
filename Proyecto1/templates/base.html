@@ -9,19 +9,17 @@
         {%block title%}
         <title>El Encuentro</title>
         {%endblock%}
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous">
+        </script>
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{%static 'css/styles.css'%}" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
-         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+         <nav class="navbar navbar-expand-lg navbar-dark text-uppercase fixed-top bg-dark" id="mainNav">
           <a class="navbar-brand" href="{%url 'home'%}">El Encuentro</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -41,34 +39,39 @@
               <li class="nav-item active">
                 <a class="nav-link" href="{%url 'edit_profile_page' user.profile.id%}">Editar Perfil<span class="sr-only">(current)</span></a>
               </li>
-               <li class="nav-item active">
-                    <a class="nav-link" href="#">{{user.username}}<span class="sr-only">(current)</span></a>
-               </li>
-                <li class="nav-item active">
-                <a class="nav-link" href="{% url 'password_change' %}">Cambiar contraseña <span class="sr-only">(current)</span></a>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{user.username}}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'password_change' %}">Cambiar contraseña</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a>
+                  <div class="dropdown-divider"></div>
+                </div>
               </li>
-                <li class="nav-item active">
-                <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión <span class="sr-only">(current)</span></a>
-              </li>
-            </ul>
-              {%else%}
-              <li class="nav-item active">
-                <a class="nav-link" href="{%url 'recetas'%}">Recetas <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{%url 'post_new'%}">Publicar Receta</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{%url 'login'%}">Iniciar Sesión</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{%url 'register'%}">Registrarse</a>
-              </li>
+                {%else%}
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{%url 'recetas'%}">Recetas <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{%url 'post_new'%}">Publicar Receta</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{%url 'login'%}">Iniciar Sesión</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{%url 'register'%}">Registrarse</a>
+                  </li>
               {%endif%}
             </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+              <button class="btn btn-outline-primary" type="submit">Buscar</button>
+            </form>
           </div>
         </nav>
 
+    </body>
 
         <!-- CONTEXT-->
        <header class="masthead bg-primary text-black text-center">
@@ -82,12 +85,13 @@
 
 
         <!-- Bootstrap core JS-->
-        <script src="{%static 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'%}"></script>
-        <script src="{static 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js'%}"></script>
-        <!-- Third party plugin JS-->
-        <script src="{%static 'https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js'%}"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Contact form JS-->
+        <script src="{%static 'assets/mail/jqBootstrapValidation.js'%}"></script>
+        <script src="{%static 'assets/mail/contact_me.js'%}"></script>
         <!-- Core theme JS-->
-        <script src="{ %static 'js/scripts.js'%}"></script>
+        <script src="{%static 'js/scripts.js'%}"></script>
     </body>
 </html>
