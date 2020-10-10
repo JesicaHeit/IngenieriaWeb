@@ -25,29 +25,29 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="nav nav-pills justify-content-between">
             <ul class="navbar-nav mr-auto">
               {% if user.is_authenticated %}
               <li class="nav-item active">
                 <a class="nav-link" href="{%url 'recetas'%}">Recetas <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="{%url 'receta_user'%}">Mis Recetas <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item active">
                 <a class="nav-link" href="{%url 'post_new'%}">Publicar Receta <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="{%url 'edit_profile_page' user.profile.id%}">Editar Perfil<span class="sr-only">(current)</span></a>
+                <li class="nav-item active">
+                <a class="nav-link" href="{%url 'search_vista'%}">Buscar<span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{user.username}}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{% url 'password_change' %}">Cambiar contraseña</a>
-                  <a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a>
-                  <div class="dropdown-divider"></div>
-                </div>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{user.username}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{%url 'receta_user'%}">Mis recetas</a>
+                        <a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id%}">Editar Perfil</a>
+                    <a class="dropdown-item" href="{% url 'password_change' %}">Cambiar contraseña</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a>
+                    <div class="dropdown-divider"></div>
+                    </div>
               </li>
                 {%else%}
                   <li class="nav-item active">
@@ -64,9 +64,8 @@
                   </li>
               {%endif%}
             </ul>
+              </ul>
             <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
-              <button class="btn btn-outline-primary" type="submit">Buscar</button>
             </form>
           </div>
         </nav>

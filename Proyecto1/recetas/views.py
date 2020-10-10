@@ -104,3 +104,6 @@ def add_comment_to_post(request, pk):
     else:
         form = CommentForm(initial={'author':request.user})
     return render(request, 'Comment/add_comment_to_post.html', {'form': form})
+
+def search_vista(request):
+    return redirect('/search')

@@ -13,13 +13,6 @@ from Proyecto1.forms import CustomUserForm
 
 
 def home(request): #Inicio
-   # nombre = "Juancito Perez"
-   # ahora = datetime.datetime.now()
-   # doc_externo = open("C:/IngenieriaWeb/Proyecto1/Proyecto1/plantillas/plantilla_home.html")
-   # plt = Template(doc_externo.read())
-   # doc_externo.close()
-   # ctx = Context({"nombre_persona": nombre, "hora_actual": ahora})
-   # documento = plt.render(ctx)
     return render(request,'users/plantilla_home.html',{})
 
 #@login_required(login_url='/accounts/login/')
@@ -40,6 +33,7 @@ def pantalla_intermedia(request): #Vista
    # documento=plt.render(ctx)
 
     return render(request,'users/pantalla_intermedia.html',{'nombre_persona': nombre})
+
 
 
 

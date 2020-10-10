@@ -41,6 +41,7 @@ from recetas.views import post_edit
 from recetas.views import post_detail2
 from recetas.views import borrar_receta
 from recetas.views import LikeView
+from recetas.views import search_vista
 from recetas.views import add_comment_to_post
 from users.views import UserEditView,ShowProfilePageView, show_profile, EditPofilePageView
 from django.urls import path
@@ -78,6 +79,7 @@ urlpatterns = [
     path('switch_follow/', follow_unfollow_profile, name ='follow_unfollow_profile'),
     #path(r'^post/(?P<pk>\d+)/comment/$', views.add_comment_to_post, name='add_comment_to_post'),
     path('post/<int:pk>/comment/', views.add_comment_to_post, name='add_comment_to_post'),
+    path('search2/', search_vista, name = 'search_vista'),
     path('search/', include('haystack.urls')),
     path("robots.txt",TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),),
 
