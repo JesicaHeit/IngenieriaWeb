@@ -27,15 +27,17 @@
     </div>
 
     <hr>
-	<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=receta.pk %}">Agregar Comentario</a>
+	<a class="btn btn-dark" href="{% url 'add_comment_to_post' pk=receta.pk %}">Agregar Comentario</a>
 	{% for comment in receta.comments.all %}
 		<div class="comment">
-			<div class="date">{{ comment.created_date }}</div>
-			<strong>{{ comment.author }}</strong>
-			<p>{{ comment.text|linebreaks }}</p>
+            <div class="jumbotron">
+                <div class="date">{{ comment.created_date }}</div>
+                <strong>{{ comment.author }}</strong>
+                <p>{{ comment.text|linebreaks }}</p>
+            </div>
 		</div>
 	{% empty %}
-		<p>No hay comentarios :(</p>
+		<p>No hay comentarios </p>
 	{% endfor %}
 
 </div>
