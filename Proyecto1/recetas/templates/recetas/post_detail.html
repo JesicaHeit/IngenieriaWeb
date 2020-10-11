@@ -34,12 +34,14 @@
             {%if liked%}
                 <button type="submit", name="receta_id", value="{{receta.id}}", class="btn btn-danger btn-sm">Unlike</button> - {{total_likes}} Likes
             {%else%}
-                <button type="submit", name="receta_id", value="{{receta.id}}", class="btn btn-success btn-sm">Like</button> - {{total_likes}} Likes
+                <button type="submit", name="receta_id", value="{{receta.id}}", class="btn btn-success btn-sm" >Like</button> - {{total_likes}} Likes
             {%endif%}
         {%else%}
             <small>Inicie sesión para likear</small> - {{total_likes}} Likes
         {%endif%}
     </form>
+    <hr>
+    <a class="btn btn-default" href="{% url 'reports' pk=receta.pk %}"><button id="follow-btn" class="ui positive button" style="color:black; background-color:red; font-family:verdana;">Denunciar</button></a>
 
     <hr>
 	<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=receta.pk %}">Agregar Comentario</a>
@@ -52,6 +54,9 @@
 	{% empty %}
 		<p>No hay comentarios :(</p>
 	{% endfor %}
+
+
+
 </div>
 {%endblock content%}
 
