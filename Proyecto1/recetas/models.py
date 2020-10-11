@@ -41,3 +41,26 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.text
+
+class Reports(models.Model):
+    
+    choices_report=(
+        (1,'Receta inválida'),
+        (2,'Spam'),
+        (3,'Otro'),
+    )
+   # report = models.ForeignKey('Receta', on_delete=models.CASCADE, related_name='reports')
+    informer = models.CharField(max_length=200)
+    informed = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, null = True)
+    options= models.PositiveSmallIntegerField(choices=choices_report,blank=False, null=False)
+    text = models.TextField(null=True)
+    created_date = models.DateTimeField(default=timezone.now)
+    approved_report = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.text
+
+    class Meta:
+        verbose_name = 'Reports'
+        verbose_name_plural = 'Reports'

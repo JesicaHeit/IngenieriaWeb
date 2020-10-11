@@ -4,8 +4,8 @@ from django.utils import timezone
 from .forms import RecetasForm
 from Proyecto1 import views
 from Proyecto1.views import home
-from .models import Receta
-from .forms import CommentForm
+from .models import Receta, Reports
+from .forms import CommentForm, ReportsForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -77,8 +77,6 @@ def borrar_receta(request, pk):
     # Después redireccionamos de nuevo a la lista
     return redirect('receta_user')
 
-
-
 def LikeView (request, pk):
     receta = get_object_or_404(Receta, id=request.POST.get('receta_id'))
     liked=True
@@ -107,3 +105,18 @@ def add_comment_to_post(request, pk):
 
 def search_vista(request):
     return redirect('/search')
+
+def ListReports(request,pk):
+    receta = get_object_or_404(Receta, pk=pk)
+    if request.method == "POST":
+        form = ReportsForm(request.POST)
+        if form.is_valid():
+            reports = form.save(commit=False)
+            reports.informer = request.user
+            reports.informed = receta.author
+            reports.title = receta.title
+            reports.save()
+            return redirect('post_detail', pk=receta.pk)
+    else:
+        form = ReportsForm(initial={'informer':request.user, 'informed':receta.author})
+    return render(request, 'Reports/reports.html', {'form': form})

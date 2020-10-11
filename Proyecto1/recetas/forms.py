@@ -1,6 +1,6 @@
 from django import forms
 from django.db import models
-from .models import Receta, Comment
+from .models import Receta, Comment, Reports
 
 class RecetasForm(forms.ModelForm):
     class Meta:
@@ -12,3 +12,19 @@ class CommentForm(forms.ModelForm):
 	class Meta:
 		model = Comment
 		fields = ('author','text',)
+
+
+class ReportsForm(forms.ModelForm):
+    informer = forms.CharField(widget=forms.TextInput(attrs={'readonly': True}), max_length = 200)
+    informed = forms.CharField(widget=forms.TextInput(attrs={'readonly': True}), max_length = 200)
+    choices_report=(
+        (1,'Receta inválida'),
+        (2,'Spam'),
+        (3,'Otro'),
+    )
+    
+    options= forms.ChoiceField(choices=choices_report,required=True, initial="Seleccione")
+    
+    class Meta:
+        model= Reports
+        fields=['informer','informed','options','text',]
