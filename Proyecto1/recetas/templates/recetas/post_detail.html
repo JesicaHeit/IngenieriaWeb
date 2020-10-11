@@ -19,7 +19,12 @@
         {% endif %}
         <h2>{{ receta.title }}</h2>
         <h5>
-            Por <a href="{% url 'show_profile_page' pk=receta.author.pk %}">{{ receta.author.profile }}</a>
+            {%if user.is_authenticated%}
+
+                Por <a href="{% url 'show_profile_page' pk=receta.author.pk %}">{{ receta.author.profile }}</a>
+            {%else%}
+                Por {{ receta.author.profile }}
+            {%endif%}
         </h5>
         <p> <img src = "{{ receta.imagen.url }}" width="300" height="300"/> </p>
         <p>{{ receta.ingredients|safe }}</p>
@@ -44,15 +49,17 @@
     <a class="btn btn-default" href="{% url 'reports' pk=receta.pk %}"><button id="follow-btn" class="ui positive button" style="color:black; background-color:red; font-family:verdana;">Denunciar</button></a>
 
     <hr>
-	<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=receta.pk %}">Agregar Comentario</a>
+	<a class="btn btn-dark" href="{% url 'add_comment_to_post' pk=receta.pk %}">Agregar Comentario</a>
 	{% for comment in receta.comments.all %}
 		<div class="comment">
+            <div class="jumbotron">
 			<div class="date">{{ comment.created_date }}</div>
 			<strong>{{ comment.author }}</strong>
 			<p>{{ comment.text|linebreaks }}</p>
+            </div>
 		</div>
 	{% empty %}
-		<p>No hay comentarios :(</p>
+		<p>No hay comentarios</p>
 	{% endfor %}
 
 
