@@ -27,7 +27,9 @@
             {%endif%}
         </h5>
         <p> <img src = "{{ receta.imagen.url }}" width="300" height="300"/> </p>
+        <p> <strong>Ingredientes</strong></p>
         <p>{{ receta.ingredients|safe }}</p>
+        <p> <strong>Paso a Paso </strong></p>
         <p>{{ receta.text|safe }}</p>
     </div>
     <br/><br/>
