@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Exists, Count
 from django.utils import timezone
 from .forms import RecetasForm
+from users.models import Profile
 from Proyecto1 import views
 from Proyecto1.views import home
 from .models import Receta, Reports
@@ -120,3 +121,16 @@ def ListReports(request,pk):
     else:
         form = ReportsForm(initial={'informer':request.user, 'informed':receta.author})
     return render(request, 'Reports/reports.html', {'form': form})
+
+def post_of_following_profiles (request):
+    profile=Profile.objects.get(user=request.user)
+    users=[user for user in profile.following.all()]
+    recetas=[]
+    qs=None
+    for u in users:
+        p=Profile.objects.get(user=u)
+        p_post=p.post_set.all()
+        recetas.append(p_post)
+    my_post=profile.post_set.all()
+    recetas.append(my_post)
+    return render(request, 'recetas/main.html', {'recetas':recetas})
