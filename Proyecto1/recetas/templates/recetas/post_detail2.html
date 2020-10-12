@@ -18,7 +18,9 @@
         {% endif %}
         <h2>{{ receta.title }}</h2>
         <p> <img src = "{{ receta.imagen.url }}" width="300" height="300"/> </p>
+        <p><strong>Ingredientes</strong></p>
         <p>{{ receta.ingredients|safe  }}</p>
+        <p><strong>Paso a Paso</strong></p>
         <p>{{ receta.text|safe }}</p>
         <a class="btn btn-dark" href="{% url 'post_edit' pk=receta.pk %}">Editar receta</a>
         <a class="btn btn-dark" href="{% url 'borrar_receta' pk=receta.pk %}"
