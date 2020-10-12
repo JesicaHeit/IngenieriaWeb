@@ -15,7 +15,7 @@
         {% for rec in receta %}
              <div class="col-md-4">
                 <div class="jumbotron">
-                <h2>{{ rec.title }}</h2>
+                <h2> <a href="{% url 'post_detail' pk=rec.pk %}">{{ rec.title }}</a></h2>
                  <h5>
                     {%if user.is_authenticated%}
 
@@ -27,7 +27,7 @@
                 <p>Fecha de Publicación: {{ rec.published_date }}  <strong>Likes: {{ rec.total_likes}}</strong></p>
                 <p> <img class="d-block w-100 h-100" src = "{{ rec.imagen.url }}"   /> </p>
                     <p>Ingredientes: {{ rec.ingredients|safe  }} </p>
-                <a href="{% url 'post_detail' pk=rec.pk %}">Ver receta completa</a>
+
                 <br>
                 </div>
                     </div>
