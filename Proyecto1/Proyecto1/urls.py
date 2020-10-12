@@ -43,6 +43,7 @@ from recetas.views import borrar_receta
 from recetas.views import LikeView
 from recetas.views import search_vista
 from recetas.views import add_comment_to_post
+from recetas.views import post_of_following_profiles
 from recetas.views import ListReports
 from users.views import UserEditView,ShowProfilePageView, show_profile, EditPofilePageView
 from django.urls import path
@@ -65,6 +66,7 @@ urlpatterns = [
     path('logout/', logout),
     path('home/', home),
     path('recipes/', login_required(recipes), name='recipes'),
+    path('recipesfollowers/', include('recetas.urls'), name='recipesfollowers'),
     path ('pantalla_intermedia/', pantalla_intermedia),
     path ('nueva_receta/', post_new, name='post_new'),
     path('receta_user/', post_list2, name='receta_user'),
