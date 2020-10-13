@@ -5,7 +5,7 @@ from .models import Receta, Comment, Reports
 class RecetasForm(forms.ModelForm):
     class Meta:
         model = Receta
-        fields = ('title', 'imagen','ingredients','text',)
+        fields = ('title', 'categoria', 'imagen','ingredients','text',)
 
 class CommentForm(forms.ModelForm):
 	author = forms.CharField(widget=forms.TextInput(attrs={'readonly': True}), max_length = 200)

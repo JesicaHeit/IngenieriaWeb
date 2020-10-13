@@ -20,12 +20,12 @@
         <h2>{{ receta.title }}</h2>
         <h5>
             {%if user.is_authenticated%}
-
                 Por <a href="{% url 'show_profile_page' pk=receta.author.pk %}">{{ receta.author.profile }}</a>
             {%else%}
                 Por {{ receta.author.profile }}
             {%endif%}
         </h5>
+        <p><strong><span class="badge badge-secondary">Categoría: {{receta.get_categoria_display}}</span></strong></p>
         <p> <img src = "{{ receta.imagen.url }}" width="300" height="300"/> </p>
         <p> <strong>Ingredientes</strong></p>
         <p>{{ receta.ingredients|safe }}</p>

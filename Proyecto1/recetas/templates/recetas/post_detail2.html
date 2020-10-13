@@ -17,6 +17,7 @@
             </div>
         {% endif %}
         <h2>{{ receta.title }}</h2>
+        <p><strong><span class="badge badge-secondary">Categoría: {{receta.get_categoria_display}}</span></strong></p>
         <p> <img src = "{{ receta.imagen.url }}" width="300" height="300"/> </p>
         <p><strong>Ingredientes</strong></p>
         <p>{{ receta.ingredients|safe  }}</p>

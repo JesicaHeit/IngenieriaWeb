@@ -55,6 +55,8 @@
                 <h2><a href="{% url 'post_detail2' pk=rec.pk %}">{{ rec.title }}</a></h2>
                 <p>{{ rec.published_date }}</p>
                     <p> <img src = "{{ rec.imagen.url }}" width="300" height="300"/> </p>
+                    <p><strong><span class="badge badge-secondary">
+                        Categoría: {{rec.get_categoria_display}}</span></strong></p>
                 <p>{{ rec.ingredients|safe }} </p>
 
 

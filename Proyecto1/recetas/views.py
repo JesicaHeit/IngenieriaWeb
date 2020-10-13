@@ -122,7 +122,7 @@ def ListReports(request,pk):
         form = ReportsForm(initial={'informer':request.user, 'informed':receta.author})
     return render(request, 'Reports/reports.html', {'form': form})
 
-def post_of_following_profiles (request):
+def post_of_following_profiles(request):
     profile=Profile.objects.get(user=request.user)
     users=[user for user in profile.following.all()]
     recetas=[]

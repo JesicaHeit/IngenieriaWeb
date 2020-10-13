@@ -14,6 +14,16 @@ class Receta(models.Model):
     published_date = models.DateTimeField(blank=True, null=True)
     likes= models.ManyToManyField('auth.User', related_name='receta_post')
     imagen = models.ImageField(upload_to="foto_receta")
+    categorias = (
+        (0,'Entradas'),
+        (1,'Carnes'),
+        (2,'Pastas'),
+        (3,'Veggie'),
+        (4,'Sandwiches'),
+        (5,'Sopas'),
+        (6,'Postres'),
+    )
+    categoria = models.PositiveSmallIntegerField(choices=categorias, blank=False, null=False)
 
     def total_likes(self):
         return self.likes.count()
@@ -53,7 +63,7 @@ class Reports(models.Model):
     informer = models.CharField(max_length=200)
     informed = models.CharField(max_length=200)
     title = models.CharField(max_length=200, null = True)
-    options= models.PositiveSmallIntegerField(choices=choices_report,blank=False, null=False)
+    options = models.PositiveSmallIntegerField(choices=choices_report,blank=False, null=False)
     text = models.TextField(null=True)
     created_date = models.DateTimeField(default=timezone.now)
     approved_report = models.BooleanField(default=False)

@@ -85,7 +85,6 @@ urlpatterns = [
     path('search2/', search_vista, name = 'search_vista'),
     path('search/', include('haystack.urls')),
     path("robots.txt",TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),),
-
     path('post/<int:pk>/reports/', views.ListReports, name='reports'),
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

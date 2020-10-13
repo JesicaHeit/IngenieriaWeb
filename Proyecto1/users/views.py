@@ -189,7 +189,6 @@ class UserEditView (generic.UpdateView):
     def get_object(self):
         return self.request.user
 
-
 def follow_unfollow_profile(request):
     if request.method== "POST":
         my_profile = Profile.objects.get(user=request.user)
