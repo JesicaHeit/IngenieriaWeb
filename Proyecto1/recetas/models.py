@@ -8,6 +8,11 @@ from ckeditor.fields import RichTextField
 class Receta(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
+    choices_state=(
+        (1,'Activa'),
+        (2,'Bloqueada'),
+        )
+    state= models.PositiveSmallIntegerField(choices=choices_state,blank=False, null=True)
     ingredients = RichTextField(config_name='nombre_referencia',verbose_name="Ingredientes",default='')
     text = RichTextField(config_name='default',verbose_name="Receta")
     created_date = models.DateTimeField(default=timezone.now)

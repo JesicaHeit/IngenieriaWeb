@@ -3,6 +3,11 @@ from django.db import models
 from .models import Receta, Comment, Reports
 
 class RecetasForm(forms.ModelForm):
+    choices_state=(
+        (1,'Activa'),
+        (2,'Bloqueada'),
+        )
+    options= forms.ChoiceField(choices=choices_state,required=True, initial="Seleccione")
     class Meta:
         model = Receta
         fields = ('title', 'categoria', 'imagen','ingredients','text',)

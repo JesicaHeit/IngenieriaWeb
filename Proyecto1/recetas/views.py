@@ -116,10 +116,24 @@ def ListReports(request,pk):
             reports.informer = request.user
             reports.informed = receta.author
             reports.title = receta.title
+            if reports.approved_report == True:
+               receta.state = 2 #Bloqueada
+            else:
+               receta.state = 1 #Activa
+               
             reports.save()
+            receta.save()
+
             return redirect('post_detail', pk=receta.pk)
     else:
         form = ReportsForm(initial={'informer':request.user, 'informed':receta.author})
+
+        if reports.approved_report == True:
+            receta.state = 2 #Bloqueada
+        else:
+            receta.state = 1 #Activa
+        receta.save()
+
     return render(request, 'Reports/reports.html', {'form': form})
 
 def post_of_following_profiles(request):
