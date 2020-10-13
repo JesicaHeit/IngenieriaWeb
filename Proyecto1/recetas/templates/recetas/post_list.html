@@ -13,6 +13,7 @@
     <div class="container">
         <div class="row">
         {% for rec in receta %}
+        	{% if rec.state != 2 %}
              <div class="col-md-4">
                 <div class="jumbotron">
                 <h2> <a href="{% url 'post_detail' pk=rec.pk %}">{{ rec.title }}</a></h2>
@@ -32,7 +33,7 @@
                 <br>
                 </div>
                     </div>
-
+            {%endif%} 
         {% endfor %}
                  </div>
     </div>
