@@ -118,21 +118,14 @@ def ListReports(request,pk):
             reports.title = receta.title
             if reports.approved_report == True:
                receta.state = 2 #Bloqueada
-            else:
-               receta.state = 1 #Activa
                
             reports.save()
-            receta.save()
+            
+            #receta.save()
 
             return redirect('post_detail', pk=receta.pk)
     else:
         form = ReportsForm(initial={'informer':request.user, 'informed':receta.author})
-
-        if reports.approved_report == True:
-            receta.state = 2 #Bloqueada
-        else:
-            receta.state = 1 #Activa
-        receta.save()
 
     return render(request, 'Reports/reports.html', {'form': form})
 
