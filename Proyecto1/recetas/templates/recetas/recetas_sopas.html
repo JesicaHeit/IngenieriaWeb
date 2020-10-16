@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sopas</title>
+</head>
+<body>
+{% for rec in receta %}
+    {{ rec.title }}
+    {{ rec.published_date }}
+    {{ rec.get_categoria_display }}
+    {{ rec.ingredients|safe  }}
+{% endfor %}
+</body>
+</html>

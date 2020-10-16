@@ -40,17 +40,14 @@ from recetas.views import post_list2
 from recetas.views import post_edit
 from recetas.views import post_detail2
 from recetas.views import borrar_receta
-from recetas.views import LikeView
-from recetas.views import search_vista
+from recetas.views import LikeView, recetas_sandwiches, recetas_sopas, recetas_postres
+from recetas.views import search_vista, recetas_entradas, recetas_carnes, recetas_pastas, recetas_veggie, recetas_todas
 from recetas.views import add_comment_to_post
 from recetas.views import post_of_following_profiles
 from recetas.views import ListReports
 from users.views import UserEditView,ShowProfilePageView, show_profile, EditPofilePageView
 from django.urls import path
 from django.views.generic.base import TemplateView
-
-
-
 
 urlpatterns = [
 
@@ -86,6 +83,14 @@ urlpatterns = [
     path('search/', include('haystack.urls')),
     path("robots.txt",TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),),
     path('post/<int:pk>/reports/', views.ListReports, name='reports'),
+    path('ajax/recetas_entradas/', recetas_entradas),
+    path('ajax/recetas_carnes/', recetas_carnes),
+    path('ajax/recetas_pastas/', recetas_pastas),
+    path('ajax/recetas_veggie/', recetas_veggie),
+    path('ajax/recetas_sandwiches/', recetas_sandwiches),
+    path('ajax/recetas_sopas/', recetas_sopas),
+    path('ajax/recetas_postres/', recetas_postres),
+    path('ajax/recetas_todas/', recetas_todas),
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

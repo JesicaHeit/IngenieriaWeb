@@ -14,7 +14,7 @@ from django.urls import reverse
 from django.core import management
 from django.core.management import call_command
 from django.core.management.commands import loaddata
-
+from django.http import JsonResponse
 
 # Create your views here.
 @login_required()
@@ -69,6 +69,38 @@ def post_edit(request, pk):
     else:
         form = RecetasForm(instance=receta)
     return render(request, 'recetas/post_edit.html', {'form': form})
+
+def recetas_todas(request):
+    receta = Receta.objects.all().annotate(like_count=Count('likes')).order_by('-like_count')
+    return render(request, 'recetas/recetas_todas.html', {'receta': receta})
+
+def recetas_entradas(request):
+    receta = Receta.objects.all().filter(categoria=0).annotate(like_count=Count('likes')).order_by('-like_count')
+    return render(request, 'recetas/recetas_entradas.html', {'receta': receta})
+
+def recetas_carnes(request):
+    receta = Receta.objects.all().filter(categoria=1).annotate(like_count=Count('likes')).order_by('-like_count')
+    return render(request, 'recetas/recetas_carnes.html', {'receta': receta})
+
+def recetas_pastas(request):
+    receta = Receta.objects.all().filter(categoria=2).annotate(like_count=Count('likes')).order_by('-like_count')
+    return render(request, 'recetas/recetas_pastas.html', {'receta': receta})
+
+def recetas_veggie(request):
+    receta = Receta.objects.all().filter(categoria=3).annotate(like_count=Count('likes')).order_by('-like_count')
+    return render(request, 'recetas/recetas_veggie.html', {'receta': receta})
+
+def recetas_sandwiches(request):
+    receta = Receta.objects.all().filter(categoria=4).annotate(like_count=Count('likes')).order_by('-like_count')
+    return render(request, 'recetas/recetas_sandwiches.html', {'receta': receta})
+
+def recetas_sopas(request):
+    receta = Receta.objects.all().filter(categoria=5).annotate(like_count=Count('likes')).order_by('-like_count')
+    return render(request, 'recetas/recetas_sopas.html', {'receta': receta})
+
+def recetas_postres(request):
+    receta = Receta.objects.all().filter(categoria=6).annotate(like_count=Count('likes')).order_by('-like_count')
+    return render(request, 'recetas/recetas_postres.html', {'receta': receta})
 
 def borrar_receta(request, pk):
     # Recuperamos la instancia de la persona y la borramos
@@ -141,3 +173,7 @@ def post_of_following_profiles(request):
     my_post=profile.post_set.all()
     recetas.append(my_post)
     return render(request, 'recetas/main.html', {'recetas':recetas})
+
+
+
+
