@@ -52,9 +52,11 @@
 
     <hr>
 	<a class="btn btn-dark" href="{% url 'add_comment_to_post' pk=receta.pk %}">Agregar Comentario</a>
+    <br>
 	{% for comment in receta.comments.all %}
+    <br>
 		<div class="comment">
-            <div class="jumbotron">
+            <div class="jumbotron p-3 mb-2 bg-primary text-dark">
 			<div class="date">{{ comment.created_date }}</div>
 			<strong>{{ comment.author }}</strong>
 			<p>{{ comment.text|linebreaks }}</p>
@@ -63,8 +65,6 @@
 	{% empty %}
 		<p>No hay comentarios</p>
 	{% endfor %}
-
-
 
 </div>
 {%endblock content%}
