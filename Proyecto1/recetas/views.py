@@ -1,3 +1,5 @@
+from itertools import chain
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Exists, Count
 from django.utils import timezone
@@ -167,12 +169,12 @@ def post_of_following_profiles(request):
     recetas=[]
     qs=None
     for u in users:
-        p=Profile.objects.get(user=u)
-        p_post=p.post_set.all()
-        recetas.append(p_post)
-    my_post=profile.post_set.all()
-    recetas.append(my_post)
-    return render(request, 'recetas/main.html', {'recetas':recetas})
+        recetas_seguidas=Receta.objects.filter(author=u)
+        recetas.append(recetas_seguidas)
+    if len(recetas)>0:
+        qs=sorted(chain(*recetas), reverse=True)
+    return render(request, 'recetas/main.html', {'recetas':qs})
+
 
 
 
