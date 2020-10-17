@@ -21,6 +21,8 @@ from django.contrib.auth import views as auth_views
 from django.urls import  path,include
 from django.conf import settings
 from django.conf.urls.static import static
+
+import recetas
 from users import views
 from users.views import register
 from users.views import activate
@@ -40,7 +42,7 @@ from recetas.views import post_list2
 from recetas.views import post_edit
 from recetas.views import post_detail2
 from recetas.views import borrar_receta
-from recetas.views import LikeView, recetas_sandwiches, recetas_sopas, recetas_postres
+from recetas.views import post_of_following_profiles, LikeView, recetas_sandwiches, recetas_sopas, recetas_postres
 from recetas.views import search_vista, recetas_entradas, recetas_carnes, recetas_pastas, recetas_veggie, recetas_todas
 from recetas.views import add_comment_to_post
 from recetas.views import post_of_following_profiles
@@ -63,7 +65,6 @@ urlpatterns = [
     path('logout/', logout),
     path('home/', home),
     path('recipes/', login_required(recipes), name='recipes'),
-    path('recipesfollowers/', include('recetas.urls'), name='recipesfollowers'),
     path ('pantalla_intermedia/', pantalla_intermedia),
     path ('nueva_receta/', post_new, name='post_new'),
     path('receta_user/', post_list2, name='receta_user'),
@@ -76,6 +77,7 @@ urlpatterns = [
     path('post/<int:pk>/edit/', post_edit, name='post_edit'),
     path('borrar/<int:pk>/', borrar_receta, name='borrar_receta'),
     path('like/<int:pk>', LikeView, name='like_post'),
+    path('recetas_follow/', post_of_following_profiles, name='recetas_follow'),
     path('switch_follow/', follow_unfollow_profile, name ='follow_unfollow_profile'),
     #path(r'^post/(?P<pk>\d+)/comment/$', views.add_comment_to_post, name='add_comment_to_post'),
     path('post/<int:pk>/comment/', views.add_comment_to_post, name='add_comment_to_post'),
