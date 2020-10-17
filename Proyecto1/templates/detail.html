@@ -16,7 +16,7 @@ profile detail
     <p>Al confirmar podrá interactuar con el usuario {{object}} </p>
   </div>
   <div class="actions">
-  	<form action="{% url 'profiles:follow-unfollow-view' %}"method="POST">
+  	<form action="{% url 'users:follow-unfollow-view' %}"method="POST">
   		{% csrf_token %}
   		<input type="hidden" name="profile_pk" value={{object.pk}}>
 	    <button type="submit" class="ui green ok massive button">
@@ -33,7 +33,7 @@ profile detail
 			{{object}}
 		<hr>
 		{% if follow %}
-			<form action="{% url 'profiles:follow-unfollow-view' %}" method="POST">
+			<form action="{% url 'users:follow-unfollow-view' %}" method="POST">
 				{% csrf_token %}
 				<input type="hidden" name="profile_pk" value={{object.pk}}>
 				<button type="submit" class="ui negative button">unfollow</button>
