@@ -164,15 +164,15 @@ def ListReports(request,pk):
     return render(request, 'Reports/reports.html', {'form': form})
 
 def post_of_following_profiles(request):
-    profile=Profile.objects.get(user=request.user)
-    users=[user for user in profile.following.all()]
-    recetas=[]
-    qs=None
+    profile = Profile.objects.get(user=request.user)
+    users = [user for user in profile.following.all()]
+    recetas = []
+    qs = None
     for u in users:
-        recetas_seguidas=Receta.objects.filter(author=u)
+        recetas_seguidas = Receta.objects.filter(author=u)
         recetas.append(recetas_seguidas)
     if len(recetas)>0:
-        qs=sorted(chain(*recetas), reverse=True)
+        qs = sorted(chain(*recetas), reverse=True)
     return render(request, 'recetas/main.html', {'recetas':qs})
 
 
