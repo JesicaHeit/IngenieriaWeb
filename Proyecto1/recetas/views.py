@@ -169,11 +169,9 @@ def post_of_following_profiles(request):
     recetas = []
     qs = None
     for u in users:
-        recetas_seguidas = Receta.objects.filter(author=u)
-        recetas.append(recetas_seguidas)
-    if len(recetas)>0:
-        qs = sorted(chain(*recetas), reverse=True)
-    return render(request, 'recetas/main.html', {'recetas':qs})
+        recetas_seguidas = Receta.objects.filter(author=u).order_by("-published_date")
+        recetas.extend(list(recetas_seguidas))
+    return render(request, 'recetas/main.html', {'recetas':recetas})
 
 
 
