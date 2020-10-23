@@ -155,10 +155,16 @@ STATIC_URL = '/static/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  
+EN_HEROKU = 1
+
+if not os.environ.get("EN_HEROKU", False):
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 MAILER_EMAIL_BACKEND = EMAIL_BACKEND  
 EMAIL_HOST = 'smtp.gmail.com'  
-EMAIL_HOST_PASSWORD = 'Ingenieri@123' 
+EMAIL_HOST_PASSWORD = os.environ.get("PASSWORD_MAIL","password por default")
 EMAIL_HOST_USER = 'elencuentro0020@gmail.com' 
 EMAIL_PORT = 465  
 EMAIL_USE_SSL = True  
