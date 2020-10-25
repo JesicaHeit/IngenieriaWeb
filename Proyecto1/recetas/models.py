@@ -64,7 +64,7 @@ class Reports(models.Model):
         (2,'Spam'),
         (3,'Otro'),
     )
-   # report = models.ForeignKey('Receta', on_delete=models.CASCADE, related_name='reports')
+    report = models.ForeignKey('Receta', on_delete=models.CASCADE, related_name='reports', null = True)
     informer = models.CharField(max_length=200)
     informed = models.CharField(max_length=200)
     title = models.CharField(max_length=200, null = True)

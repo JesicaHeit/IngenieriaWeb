@@ -1,5 +1,5 @@
 from itertools import chain
-
+from django.contrib import admin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Exists, Count
 from django.utils import timezone
@@ -147,6 +147,7 @@ def ListReports(request,pk):
         form = ReportsForm(request.POST)
         if form.is_valid():
             reports = form.save(commit=False)
+            reports.report = receta
             reports.informer = request.user
             reports.informed = receta.author
             reports.title = receta.title
@@ -174,6 +175,17 @@ def post_of_following_profiles(request):
     return render(request, 'recetas/main.html', {'recetas':recetas})
 
 
+def bloquear_receta (modeladmin,request,queryset):
+		for repo in queryset:
+			receta = Receta.objects.filter(title=repo.report, author = repo.report.author).order_by("-published_date")
+			receta.update(state=2) #Bloqueada
+		return redirect('admin/recetas/reports/')
+
+def activar_receta(modeladmin,request,queryset):
+	for repo in queryset:
+			receta = Receta.objects.filter(title=repo.report, author = repo.report.author).order_by("-published_date")
+			receta.update(state=1)#Activa
+	return redirect('admin/recetas/reports/')
 
 
 
