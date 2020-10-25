@@ -48,8 +48,11 @@
         {%endif%}
     </form>
     <hr>
-    <a class="btn btn-default" href="{% url 'reports' pk=receta.pk %}"><button id="follow-btn" class="ui positive button" style="color:black; background-color:red; font-family:verdana;">Denunciar</button></a>
-
+        {%if user.is_authenticated%}
+            {%if user != receta.author %}
+                <a class="btn btn-default" href="{% url 'reports' pk=receta.pk %}"><button id="follow-btn" class="ui positive button" style="color:black; background-color:red; font-family:verdana;">Denunciar</button></a>
+            {%endif%}   
+        {%endif%}    
     <hr>
 	<a class="btn btn-dark" href="{% url 'add_comment_to_post' pk=receta.pk %}">Agregar Comentario</a>
     <br>
