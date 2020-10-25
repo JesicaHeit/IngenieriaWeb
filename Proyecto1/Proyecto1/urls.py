@@ -47,6 +47,8 @@ from recetas.views import search_vista, recetas_entradas, recetas_carnes, receta
 from recetas.views import add_comment_to_post
 from recetas.views import post_of_following_profiles
 from recetas.views import ListReports
+from recetas.views import bloquear_receta
+from recetas.views import activar_receta
 from users.views import UserEditView,ShowProfilePageView, show_profile, EditPofilePageView
 from django.urls import path
 from django.views.generic.base import TemplateView
@@ -81,6 +83,8 @@ urlpatterns = [
     path('switch_follow/', follow_unfollow_profile, name ='follow_unfollow_profile'),
     #path(r'^post/(?P<pk>\d+)/comment/$', views.add_comment_to_post, name='add_comment_to_post'),
     path('post/<int:pk>/comment/', views.add_comment_to_post, name='add_comment_to_post'),
+    path('admin/recetas/reports/',bloquear_receta, name = 'bloquear_receta'),
+    path('admin/recetas/reports/',activar_receta, name = 'activar_receta'),
     path('search2/', search_vista, name = 'search_vista'),
     path('search/', include('haystack.urls')),
     path("robots.txt",TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),),
