@@ -51,6 +51,13 @@
                     <div class="dropdown-divider"></div>
                     </div>
               </li>
+                {%if user.is_staff %}
+                    </li>
+                    <li class="nav-item active">
+                    <a class="nav-link" href="http://127.0.0.1:8000/admin/">Panel del Administrador<span class="sr-only">(current)</span></a>
+                  </li>
+                {%endif%}
+
                 {%else%}
                   <li class="nav-item active">
                     <a class="nav-link" href="{%url 'recetas'%}">Explorar <span class="sr-only">(current)</span></a>
