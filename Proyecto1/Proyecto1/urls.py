@@ -59,7 +59,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('jet/', include('jet.urls', 'jet')),
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='administrador'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('register/', register, name='register'),
     path('activate/<uidb64>/<token>/',activate, name='activate'),
