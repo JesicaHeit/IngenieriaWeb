@@ -175,17 +175,5 @@ def post_of_following_profiles(request):
     return render(request, 'recetas/main.html', {'recetas':recetas})
 
 
-def bloquear_receta (modeladmin,request,queryset):
-		for repo in queryset:
-			receta = Receta.objects.filter(title=repo.report, author = repo.report.author).order_by("-published_date")
-			receta.update(state=2) #Bloqueada
-		return redirect('admin/recetas/reports/')
-
-def activar_receta(modeladmin,request,queryset):
-	for repo in queryset:
-			receta = Receta.objects.filter(title=repo.report, author = repo.report.author).order_by("-published_date")
-			receta.update(state=1)#Activa
-	return redirect('admin/recetas/reports/')
-
 
 
