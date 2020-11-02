@@ -8,7 +8,6 @@ admin.site.register(Comment)
 #admin.site.register(Receta)
 
 
-
 class RecetaAdmin(admin.ModelAdmin):
 	actions = ['bloquear_receta','activar_receta']
 	list_display =['title', 'author', 'state', 'categoria']
@@ -22,10 +21,12 @@ class RecetaAdmin(admin.ModelAdmin):
 		queryset.update(state = 1)
 	activar_receta.description = "Activar receta"
 
+
 admin.site.register(Receta,RecetaAdmin)
 
+
 class ReportAdmin(admin.ModelAdmin):
-	actions = ['bloquear_receta','activar_receta']
+	actions = ['bloquear_receta','activar_receta', 'ver_contenido']
 	list_display = ['report', 'informed', 'text']
 	list_filter = ['report', 'informed']
 
@@ -40,6 +41,15 @@ class ReportAdmin(admin.ModelAdmin):
 			receta = Receta.objects.filter(title=repo.report, author = repo.report.author).order_by("-published_date")
 			receta.update(state=1)
 	activar_receta.description = "Activar receta"
+
+	def ver_contenido(self,request,queryset):
+		recetas= []
+		for repo in queryset:
+			receta = Receta.objects.filter(title=repo.report, author = repo.report.author).order_by("-published_date")
+			recetas.extend(list(receta))
+		return render(request, 'recetas/post_detail_admin.html', {'recetas': recetas})	
+
+	ver_contenido.description = "Ver Contenido"
 
 admin.site.register(Reports,ReportAdmin)
 
